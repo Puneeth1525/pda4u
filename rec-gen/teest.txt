@@ -1,0 +1,12 @@
+import java.util.concurrent.CompletableFuture;
+
+public class ConfigurableFutureProgram  {
+  public static void main (String[] args) {
+    int result  =  runAsyncConfigurableProgram(String configValue1, String configValue2){
+      CompletableFuture<Int> future = CompletableFuture.runAsync(() -> {
+        int result = perform(configValue1, configValue2);
+      });
+      return future.thenApply(ignored ->42).join();
+    }
+  }
+}

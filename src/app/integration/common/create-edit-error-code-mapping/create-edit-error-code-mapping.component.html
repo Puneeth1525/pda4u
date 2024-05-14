@@ -1,0 +1,45 @@
+<div class="integration-modal">
+    <div class="modal-title">
+        <div class="title">Create/Edit Error Code Mapping</div>
+        <div class="close-icon" mat-dialog-close>
+            <mat-icon svgIcon="close"></mat-icon>
+        </div>
+    </div>
+    <div mat-dialog-content class="modal-content">
+        <div class="integrationcontainer-wrap">
+
+            <div class="input-container">
+                <div class="label-container">
+                    <label class="input-label">RCX Error Code *</label>
+                </div>
+                <mat-form-field appearance="outline" class="select-container">
+                    <mat-select placeholder="Select">
+                        <mat-option *ngFor="let option of options" [value]="option">
+                            {{ option }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="errorcode-desc-wrap">
+                <div class="title">Error Code Description</div>
+                <div>This is some description text that explains what is going on</div>
+            </div>
+
+            <div class="input-container">
+                <div class="label-container">
+                    <label class="input-label">Partner Error Code *</label>
+                </div>
+                <mat-form-field appearance="outline">
+                    <input type="text" matInput placeholder="Enter Partner Error Code" value="456" />
+                </mat-form-field>
+            </div>
+
+        </div>
+    </div>
+    <div mat-dialog-actions class="modal-buttons">
+        <div class="right-elements">
+            <button class="btn outline-btn">Cancel</button>
+            <button class="btn primary-btn" mat-dialog-close>Ok</button>
+        </div>
+    </div>
+</div>

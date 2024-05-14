@@ -1,0 +1,145 @@
+<!-- load all svg icons -->
+<app-svg-icons></app-svg-icons>
+
+<!-- Main content starts here -->
+<mat-toolbar class="toolbar">
+  <mat-icon (click)="toggleSidebar()" class="pointer">menu</mat-icon>
+  <img src="" class="logo" />
+  <h1>DEMO</h1>
+  <span class="flexExpand"></span>
+  <div>
+    <mat-label mat-button [matMenuTriggerFor]="beforeMenu" class="profile-wrap">
+      <span class="profile-img-text">JD</span>
+      <!-- <img src="/assets/Profile.png" class="profile-img" /> -->
+      <div class="profile-name">
+        John Doe<br /><span class="profile-order">Super Admin</span>
+      </div>
+      <mat-icon class="icon" svgIcon="down-arrow"></mat-icon>
+    </mat-label>
+    <mat-menu #beforeMenu="matMenu" xPosition="before" class="profile-menu">
+      <button
+        mat-menu-item
+        routerLink="/user-profile"
+        color="primary"
+        class="profile-menu-list"
+      >
+        <mat-icon svgIcon="profile-icon" class="icon"></mat-icon> My Profile
+      </button>
+      <button
+        mat-menu-item
+        routerLink="/profile"
+        color="primary"
+        class="profile-menu-list"
+      >
+        <mat-icon svgIcon="logout-icon" class="icon"></mat-icon>Logout
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+
+<mat-drawer-container class="menu-container mat-typography">
+  <mat-drawer
+    #drawer
+    mode="side"
+    disableClose="true"
+    opened="true"
+    [ngClass]="{ menuhandle: isSidebarOpen }"
+  >
+    <mat-nav-list>
+      <!-- <mat-list-item
+        routerLink="/dashboard"
+        routerLinkActive="active-list-item"
+      >
+        <h4 class="menu-text">
+          <mat-icon svgIcon="dashboard" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">Dashboard</span>
+        </h4>
+      </mat-list-item>
+      <mat-list-item
+        routerLink="/templates"
+        routerLinkActive="active-list-item"
+      >
+        <h4 class="menu-text">
+          <mat-icon svgIcon="templates" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">Templates</span>
+        </h4>
+      </mat-list-item>
+      <mat-list-item routerLink="/partners" routerLinkActive="active-list-item">
+        <h4 class="menu-text">
+          <mat-icon svgIcon="partners" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">Partners</span>
+        </h4>
+      </mat-list-item>
+      <mat-list-item
+        routerLink="/connections"
+        routerLinkActive="active-list-item"
+      >
+        <h4 class="menu-text">
+          <mat-icon svgIcon="connection" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">Connections</span>
+        </h4>
+      </mat-list-item>
+      <mat-list-item
+        routerLink="/integrations"
+        routerLinkActive="active-list-item"
+      >
+        <h4 class="menu-text">
+          <mat-icon svgIcon="integrations" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">Integrations</span>
+        </h4>
+      </mat-list-item>
+      <mat-list-item
+        routerLink="/run-history"
+        routerLinkActive="active-list-item"
+      >
+        <h4 class="menu-text">
+          <mat-icon svgIcon="run-history" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">Run History</span>
+        </h4>
+      </mat-list-item> -->
+      <mat-list-item
+        routerLink="/quote-summary"
+        routerLinkActive="active-list-item"
+      >
+        <h4 class="menu-text">
+          <mat-icon svgIcon="templates" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">Quote Summary</span>
+        </h4>
+      </mat-list-item>
+
+
+      <mat-list-item
+        routerLink="/a"
+        routerLinkActive="active-list-item"
+      >
+        <h4 class="menu-text">
+          <mat-icon svgIcon="templates" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">nav item2</span>
+        </h4>
+      </mat-list-item>
+      <mat-list-item
+        routerLink="/b"
+        routerLinkActive="active-list-item"
+      >
+        <h4 class="menu-text">
+          <mat-icon svgIcon="templates" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">nav item 3</span>
+        </h4>
+      </mat-list-item>
+      <mat-list-item
+        routerLink="/c"
+        routerLinkActive="active-list-item"
+      >
+        <h4 class="menu-text">
+          <mat-icon svgIcon="templates" class="pointer myIcon"></mat-icon>
+          <span class="menu-name">nav item 4</span>
+        </h4>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content [ngClass]="{ drawerWidth: !isSidebarOpen }">
+    <div class="example-sidenav-content">
+      <router-outlet> </router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

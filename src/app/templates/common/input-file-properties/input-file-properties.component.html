@@ -1,0 +1,134 @@
+<div class="form">
+  <div class="right-panel-header">
+    <div class="right-panel-left-content">
+      <div class="bread-crum">Input File / <span>File Property</span></div>
+      <div class="bread-crum-child">Sequence #1</div>
+    </div>
+  </div>
+  <div class="right-panel-main-content">
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Format *</label>
+          </div>
+          <mat-radio-group
+            value="1"
+            color="primary"
+            aria-label="Select an option"
+          >
+            <mat-radio-button value="1">Delimited</mat-radio-button>
+            <mat-radio-button value="2">Fixed</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="middle-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Delimiter *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Outline" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="end-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Quote Strings *</label>
+          </div>
+          <mat-radio-group
+            color="primary"
+            value="1"
+            aria-label="Select an option"
+          >
+            <mat-radio-button value="1">"</mat-radio-button>
+            <mat-radio-button value="2">'</mat-radio-button>
+            <mat-radio-button value="3">None</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Header *</label>
+          </div>
+          <mat-radio-group
+            color="primary"
+            value="1"
+            aria-label="Select an option"
+          >
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Header Regex</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Header Regex" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Body *</label>
+          </div>
+          <mat-radio-group
+            color="primary"
+            value="1"
+            aria-label="Select an option"
+          >
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Body Regex</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Body Regex" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Footer *</label>
+          </div>
+          <mat-radio-group
+            color="primary"
+            value="1"
+            aria-label="Select an option"
+          >
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Footer Regex</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Footer Regex" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="executionfield-modal">
+  <div class="modal-title">
+    <div class="title">Execution Log</div>
+    <div class="close-icon" mat-dialog-close>
+      <mat-icon svgIcon="close"></mat-icon>
+    </div>
+  </div>
+  <div mat-dialog-content class="modal-content">
+    <div class="executioncontainer-wrap">
+      <div class="search-wrap search-input-container">
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput type="search" placeholder="Search" />
+        </mat-form-field>
+      </div>
+      <div class="list-wrap code-wrap">
+        <blockquote>
+          <pre>
+              <code>
+    # All permissions used within Assisted Log Enabler for AWS:
+        "ec2:DescribeVpcs",
+        "ec2:DescribeFlowLogs",
+        "ec2:CreateFlowLogs",
+        "logs:CreateLogDelivery",
+        "s3:GetBucketPolicy",
+        "s3:PutBucketPolicy",
+        "s3:PutLifecycleConfiguration"
+        "s3:PutObject",
+        "s3:CreateBucket",
+        "cloudtrail:StartLogging",
+        "cloudtrail:CreateTrail",
+        "cloudtrail:DescribeTrails",
+        "eks:UpdateClusterConfig",
+        "eks:ListClusters",
+        "route53resolver:ListResolverQueryLogConfigAssociations",
+        "route53resolver:CreateResolverQueryLogConfig",
+        "route53resolver:AssociateResolverQueryLogConfig",
+        "iam:CreateServiceLinkRole", # This is used to create the AWSServiceRoleForRoute53 Resolver.
+        "route53resolver:ListResolverQueryLogConfigs",
+        "route53resolver:ListTagsForResource",
+        "route53resolver:DisassociateResolverQueryLogConfig",
+        "route53resolver:DeleteResolverQueryLogConfig"
+        "s3:PutBucketLogging",
+        "s3:GetBucketLogging",
+        "s3:ListBucket",
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation",
+        "s3:GetBucketAcl",
+        "s3:PutBucketAcl",
+        "s3:PutBucketPublicAccessBlock",
+        "s3:PutBucketLifecycleConfiguration"
+
+        # For adding AWS CloudTrail logs:
+        "s3:GetBucketPolicy",
+        "s3:PutBucketPolicy",
+        "s3:PutLifecycleConfiguration"
+        "s3:PutObject",
+        "s3:CreateBucket",
+        "cloudtrail:StartLogging",
+        "cloudtrail:CreateTrail",
+        "cloudtrail:DescribeTrails"
+              </code>
+            </pre>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="modal-buttons">
+    <div class="right-elements">
+      <button class="btn outline-btn icon"><mat-icon svgIcon="download"></mat-icon> Download Log</button>
+      <button class="btn primary-btn" mat-dialog-close>Ok</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,194 @@
+<div class="form">
+  <div class="right-panel-header">
+    <div class="right-panel-left-content">
+      <div class="bread-crum">Input File / Body / <span> 1</span></div>
+      <div class="bread-crum-child">Sequence #1</div>
+    </div>
+  </div>
+  <div class="right-panel-main-content">
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Field Name *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Field Name" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Fixed Length *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Fixed Length"/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Data Type *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-select placeholder="Data Type">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Number of decimals *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Number of Decimals" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Required *</label>
+          </div>
+          <mat-radio-group
+            color="primary"
+            value="1"
+            aria-label="Select an option"
+          >
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Default Value</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Enter default value"
+          />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Min Value*</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Min Value"/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Max Value*</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Max Value"/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Editable *</label>
+          </div>
+          <mat-radio-group
+            color="primary"
+            value="1"
+            aria-label="Select an option"
+          >
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Auto-Fixable *</label>
+          </div>
+          <mat-radio-group
+            color="primary"
+            value="1"
+            aria-label="Select an option"
+          >
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">RCX Field*</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-icon matIconSuffix (click)="openDialog()" class="textbox-icon" svgIcon="doc-search"></mat-icon>
+            <input matInput placeholder="Enter RCX Field"/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Unique Key Flag *</label>
+          </div>
+          <mat-radio-group
+            color="primary"
+            value="1"
+            aria-label="Select an option"
+          >
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Transform*</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Transform"/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Comments</label>
+          </div>
+          <textarea
+            matInput
+            class="textarea-style textarea"
+            placeholder="Enter Comments"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

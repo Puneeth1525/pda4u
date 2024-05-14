@@ -1,0 +1,63 @@
+<div class="form">
+  <div class="right-panel-header">
+    <div class="right-panel-left-content">
+      <div class="bread-crum">
+        <p class="tproperties">Response Properties</p>
+      </div>
+    </div>
+  </div>
+  <div class="right-panel-main-content">
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Response Connection *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-select placeholder="Select">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="full-box">
+      <div class="input-container">
+        <div class="label-container">
+          <label class="input-label">Response Path *</label>
+        </div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Enter Response Path" />
+        </mat-form-field>
+      </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="full-box">
+      <div class="input-container">
+        <div class="label-container">
+          <label class="input-label">Response Archive Path *</label>
+        </div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Enter Response Archive Path" />
+        </mat-form-field>
+      </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="full-box">
+      <div class="input-container">
+        <div class="label-container">
+          <label class="input-label">Response File Pattern *</label>
+        </div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Enter Response File Pattern" />
+        </mat-form-field>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

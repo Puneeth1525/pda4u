@@ -1,0 +1,191 @@
+<div class="run-history">
+  <mat-card class="header-title">
+    <div class="row">
+      <div class="title">Quote Summary</div>
+    </div>
+  </mat-card>
+
+
+  <div class="create-partner">
+
+
+    <div class="childContainer">
+      <div class="inner-headerContainer">
+        <div class="left-elements">
+          <div class="right-child">
+            <div class="temp-properties-name">Search By:</div>
+          </div>
+        </div>
+      </div>
+      <div class="main-container">
+        <div class="full-width">
+          <div class="one-line">
+            <div class="left-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Quote Number </label>
+                </div>
+                <mat-form-field appearance="outline">
+                  <input matInput placeholder="Enter Partner Name" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="middle-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Account </label>
+                </div>
+                <mat-form-field appearance="outline" class="select-container">
+                  <mat-select placeholder="Select Partner Type">
+                    <mat-option *ngFor="let option of options" [value]="option">
+                      {{ option }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="right-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Input Must Exist *</label>
+                </div>
+                <mat-radio-group value="1" style="display: flex; flex-direction: column;" color="primary" aria-label="Select an option">
+                  <mat-radio-button value="1">Current Exception</mat-radio-button>
+                  <mat-radio-button value="2">All Exceptions</mat-radio-button>
+                  <mat-radio-button value="2">All Quotes</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+          </div>
+          <div class="one-line">
+            <div class="left-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">From Date/Time *</label>
+                </div>
+                <!-- <mat-form-field appearance="outline">
+                  <input matInput placeholder="Enter Effective Date/Time " />
+                </mat-form-field> -->
+                <mat-form-field appearance="outline">
+                  <input matInput type="datetime-local" placeholder="Enter Effective Date/Time ">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="middle-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Origin</label>
+                </div>
+                <mat-form-field appearance="outline">
+                  <input matInput placeholder="Enter support email" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="right-box">
+              <div class="input-container">
+                <div class="input-container" style="display: flex; gap: 10px;">
+                  <mat-form-field appearance="outline">
+                    <input class="api" matInput placeholder="Zip" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <input class="api" matInput placeholder="City" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <input class="api" matInput placeholder="State" />
+                  </mat-form-field>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="one-line">
+            <div class="left-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">To Date/Time *</label>
+                </div>
+                <!-- <mat-form-field appearance="outline">
+                  <input matInput placeholder="Enter Effective Date/Time " />
+                </mat-form-field> -->
+                <mat-form-field appearance="outline">
+                  <input matInput type="datetime-local" placeholder="Enter Effective Date/Time ">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="middle-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Destination</label>
+                </div>
+                <mat-form-field appearance="outline">
+                  <input matInput placeholder="Enter support email" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="right-box">
+              <div class="input-container">
+                <div class="input-container" style="display: flex; gap: 10px;">
+                  <mat-form-field appearance="outline">
+                    <input class="api" matInput placeholder="Zip" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <input class="api" matInput placeholder="City" />
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <input class="api" matInput placeholder="State" />
+                  </mat-form-field>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="one-line">
+            <div class="left-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Email *</label>
+                </div>
+                <mat-form-field appearance="outline">
+                  <input matInput placeholder="Enter Name" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="right-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Exceptions *</label>
+                </div>
+                <mat-form-field appearance="outline">
+                  <mat-select placeholder="RCX Process">
+                    <mat-option *ngFor="let option of options" [value]="option">
+                      {{ option }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+        <button class="theme-button active-btn" mat-flat-button>
+          <mat-icon svgIcon="save"></mat-icon>submit
+        </button>
+  </div>
+
+  <div class="panel">
+    <mat-card>
+      <app-table-filter></app-table-filter>
+      <div class="row pannel-section">
+        <app-dynamic-table [tableDataSource]="tableDataSource" [displayedColumns]="tableHeader"></app-dynamic-table>
+      </div>
+    </mat-card>
+  </div>
+</div>

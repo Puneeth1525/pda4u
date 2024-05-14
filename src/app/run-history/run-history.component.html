@@ -1,0 +1,16 @@
+<div class="run-history">
+  <mat-card class="header-title">
+    <div class="row">
+      <div class="title">Run History</div>
+    </div>
+  </mat-card>
+
+  <div class="panel">
+    <mat-card>
+      <app-table-filter></app-table-filter>
+      <div class="row pannel-section">
+        <app-dynamic-table [tableDataSource]="tableDataSource" [displayedColumns]="tableHeader"></app-dynamic-table>
+      </div>
+    </mat-card>
+  </div>
+</div>

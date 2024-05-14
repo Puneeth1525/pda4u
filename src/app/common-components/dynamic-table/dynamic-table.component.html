@@ -1,0 +1,121 @@
+<div class="responsive-table">
+  <table
+    class="row custom-table"
+    mat-table
+    matSort
+    [dataSource]="dataSource"
+    matSortActive="{{ defaultActiveSort }}"
+    matSortDirection="desc"
+  >
+    <!-- Add table columns and define their data sources -->
+    <ng-container *ngFor="let item of secondHeader" matColumnDef="{{ item }}">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [attr.colspan]="item === 'Integration_Name_Run_Id' ? 2 : 3"
+      >
+        {{ item.replaceAll("_", " ") }}
+      </th>
+    </ng-container>
+    <ng-container
+      *ngFor="let item of displayedColumns"
+      matColumnDef="{{ item }}"
+    >
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        class="table-header"
+        [ngClass]="{ 'fix-width': item === 'runId' || item === 'actions' }"
+      >
+        {{ getString(item) }}
+      </th>
+
+      <td mat-cell *matCellDef="let element" class="table-row">
+        <!-- Simple field -->
+        <!-- Field with name -->
+        <div *ngIf="item === 'Quote_no'">
+          <span class="name-color">{{ element[item] }}</span>
+        </div>
+        <div class="run-id-width" *ngIf="item === 'Creation_Date'">
+          <span>{{ element[item] }}</span>
+        </div>
+        <div *ngIf="item === 'Company_Name'">
+          <span class="name-color">{{ returnFileName(element[item]) }}</span>
+        </div>
+        <div *ngIf="item === 'Account'">
+          <span class="name-color">{{ returnFileName(element[item]) }}</span>
+        </div>
+        <!-- Field with duration -->
+        <div *ngIf="item === 'Exception'">
+          <span>{{ formatLabel(element[item]) }}</span>
+        </div>
+        <div *ngIf="item === 'UserID'">
+          <span>{{ element[item] }}</span>
+        </div>
+        <div *ngIf="item === 'end'">
+          <span>{{ element[item] }}</span>
+        </div>
+        <div *ngIf="item === 'succeeded'">
+          <span>{{ element[item] }}</span>
+        </div>
+        <div class="failed-width" *ngIf="item === 'failed'">
+          <span>{{ element[item] }}</span>
+        </div>
+        <!-- Field which has status -->
+        <div class="status-width" *ngIf="item === 'status'">
+          <div class="status {{ getClassName(element[item]) }}">
+            {{ element.status }}
+          </div>
+        </div>
+        <!-- Field with copy sign -->
+        <!-- Field with two line divider -->
+        <!-- Field which has status -->
+        <!-- Field which has file format -->
+        <!-- Field which has time -->
+        <!-- Field which has actions -->
+        <!-- Field which has actions -->
+        <div class="action-width" *ngIf="item === 'actions'">
+          <button
+            *ngIf="element[item].includes('copy')"
+            mat-icon-button
+            (click)="openDialog()"
+          >
+            <mat-icon svgIcon="file"></mat-icon>
+          </button>
+          <button *ngIf="element[item].includes('delete')" mat-icon-button>
+            <mat-icon svgIcon="trash"></mat-icon>
+          </button>
+          <button *ngIf="element[item].includes('edit')" mat-icon-button>
+            <mat-icon svgIcon="edit"></mat-icon>
+          </button>
+          <button
+            *ngIf="element[item].includes('info')"
+            mat-icon-button
+            (click)="openRunHistoryDetails(element)"
+          >
+            <mat-icon svgIcon="info-dark"></mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+    <tr
+      mat-header-row
+      class="small-header"
+      *matHeaderRowDef="secondHeader"
+    ></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div class="pagination">
+    <mat-paginator
+      #paginator
+      [length]="100"
+      [pageIndex]="0"
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="next"
+    >
+    </mat-paginator>
+  </div>
+</div>

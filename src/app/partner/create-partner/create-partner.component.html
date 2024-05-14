@@ -1,0 +1,129 @@
+<div class="create-partner">
+  <div class="headerContainer">
+    <div class="left-elements">
+      <div class="left-child">
+        <div class="back-circle">
+          <div class="circle" [routerLink]="['/partners/view/list']" routerLinkActive="router-link-active">
+            <mat-icon class="back" svgIcon="back">arrow_back</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="right-child">
+        <div class="bread-crum">Partners / <span>Create</span></div>
+        <div class="template-label">Partner Name Goes Here</div>
+      </div>
+    </div>
+
+    <div class="right-elements">
+      <button
+        class="theme-button active-btn"
+        mat-flat-button
+        aria-label="Edit Template"
+        routerLinkActive="button-active"
+        routerLink="/partners/view"
+      >
+        <mat-icon svgIcon="save"></mat-icon>Save
+      </button>
+    </div>
+  </div>
+
+  <div class="childContainer">
+    <div class="inner-headerContainer">
+      <div class="left-elements">
+        <div class="right-child">
+          <div class="temp-properties-name">Partner Details</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="full-width">
+        <div class="one-line">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Partner Name </label>
+              </div>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Enter Partner Name" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Partner Type </label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <mat-select placeholder="Select Partner Type">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="right-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Code</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <mat-select placeholder="Select Code">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="one-line">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Support Number</label>
+              </div>
+              <div class="cust-supportno">
+                <div class="country-code-selection">
+                  <mat-form-field appearance="outline" width="10px">
+                    <input matInput placeholder="" value="+1" disabled/>
+                  </mat-form-field>
+                </div>
+                <mat-form-field
+                  appearance="outline"
+                  class="select-container support-textbox"
+                >
+                  <input matInput placeholder="Enter support number" />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Support Email</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Enter support email" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="right-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Timezone</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <mat-select placeholder="Select Timezone">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="tab-wrap">
+  <mat-button-toggle-group
+    class="left-elements button-size"
+    #group="matButtonToggleGroup"
+    [(ngModel)]="statusFilter"
+  >
+    <mat-button-toggle class="toggles" value="all" checked="true"
+      >Current Exception</mat-button-toggle
+    >
+    <mat-button-toggle class="toggles" value="failed">All Exceptions</mat-button-toggle>
+    <mat-button-toggle class="toggles" value="succeeded"
+      >All Quotes</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+</div>

@@ -1,0 +1,96 @@
+<div class="form">
+  <div class="right-panel-header">
+    <div class="right-panel-left-content">
+      <div class="bread-crum">
+        <p class="tproperties">Input Properties</p>
+      </div>
+    </div>
+  </div>
+  <div class="right-panel-main-content">
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Input Connection *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-select placeholder="Select">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Input Must Exist *</label>
+          </div>
+          <mat-radio-group value="1" color="primary" aria-label="Select an option">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Max Retries *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Max Retries" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Retry Interval Seconds *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Retry Interval Seconds " />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="full-box">
+      <div class="input-container">
+        <div class="label-container">
+          <label class="input-label">Input Path *</label>
+        </div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Enter Input Path" />
+        </mat-form-field>
+      </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="full-box">
+      <div class="input-container">
+        <div class="label-container">
+          <label class="input-label">Input Archive Path *</label>
+        </div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Enter Input Archive Path" />
+        </mat-form-field>
+      </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="full-box">
+      <div class="input-container">
+        <div class="label-container">
+          <label class="input-label">Input File Pattern *</label>
+        </div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Enter Input File Pattern" />
+        </mat-form-field>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

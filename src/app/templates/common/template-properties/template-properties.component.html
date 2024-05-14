@@ -1,0 +1,63 @@
+<div class="form">
+  <div class="right-panel-header">
+    <div class="right-panel-left-content">
+      <div class="bread-crum">
+        <p class="tproperties">Template Properties</p>
+      </div>
+    </div>
+  </div>
+  <div class="right-panel-main-content">
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Name *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Name" />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">RCX Process *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-select placeholder="RCX Process">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Partner *</label>
+          </div>
+          <mat-form-field appearance="outline" class="select-container">
+            <mat-select placeholder="Partner">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Description</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Description" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

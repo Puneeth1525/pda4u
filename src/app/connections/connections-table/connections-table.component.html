@@ -1,0 +1,71 @@
+<mat-card class="header-title">
+  <div class="row">
+    <div class="title">Connections</div>
+    <div class="create-button">
+      <button
+        class="theme-button active-btn"
+        (click)="createConnection()"
+        mat-flat-button
+        color="primary"
+        aria-label="Create Template"
+      >
+        <mat-icon>add</mat-icon>Create New
+      </button>
+    </div>
+  </div>
+</mat-card>
+
+<div class="panel">
+  <mat-card>
+    <div class="row search-section">
+      <div class="right-elements">
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            type="search"
+            placeholder="Search by Connection name or Description"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row filter-section">
+      <div class="filter-options">
+        <mat-form-field
+          appearance="outline"
+          class="small-dropdown"
+          floatLabel="always"
+        >
+          <mat-label>Partner</mat-label>
+          <mat-select placeholder="Select Partner" class="label-space">
+            <mat-option *ngFor="let option of options">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Connection Type</mat-label>
+          <mat-select placeholder="Select Connection Type" class="label-space">
+            <mat-option *ngFor="let option of options">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Connection Name</mat-label>
+          <mat-select placeholder="Select Connection Name" class="label-space">
+            <mat-option *ngFor="let option of options">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="filter-reset">
+        <button mat-stroked-button>Reset Filters</button>
+      </div>
+    </div>
+    <!-- <connection-template-list></connection-template-list> -->
+    <router-outlet></router-outlet>
+  </mat-card>
+</div>

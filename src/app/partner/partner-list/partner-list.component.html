@@ -1,0 +1,134 @@
+<div class="responsive-table">
+  <table
+    class="row custom-table"
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="partnerName"
+    matSortDirection="desc"
+  >
+    <!-- Add table columns and define their data sources -->
+
+    <ng-container matColumnDef="partnerName">
+      <th
+        mat-header-cell
+        mat-sort-header
+        *matHeaderCellDef
+        class="table-header"
+      >
+        Partner Name
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let element; let i = index"
+        class="name-color table-row"
+        [ngClass]="{ 'active-row': i == 0 }"
+      >
+        <a (click)="showDetail()">{{ element.partnerName }}</a>
+
+        <div *ngIf="i == 0" class="hosting-subtext">(Hosting Partner)</div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="partnerType">
+      <th
+        mat-header-cell
+        mat-sort-header
+        *matHeaderCellDef
+        class="table-header"
+      >
+        Partner Type
+      </th>
+      <td mat-cell *matCellDef="let element" class="table-row">
+        {{ element.partnerType }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="supportNumber">
+      <th
+        mat-header-cell
+        mat-sort-header
+        *matHeaderCellDef
+        class="table-header"
+      >
+        Support Number
+      </th>
+      <td mat-cell *matCellDef="let element" class="table-row">
+        {{ element.supportNumber }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="supportEmail">
+      <th
+        mat-header-cell
+        mat-sort-header
+        *matHeaderCellDef
+        class="table-header"
+      >
+        Support Email
+      </th>
+      <td mat-cell *matCellDef="let element" class="name-color table-row">
+        <span>{{ element.supportEmail }}</span>
+        <span
+          class="copy-icon"
+          matTooltipPosition="above"
+          matTooltip="Email copied to clipboard"
+          matTooltipClass="cust-tooltip"
+          ><mat-icon svgIcon="copy" class="icon-size"></mat-icon
+        ></span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="lastUpdatedBy">
+      <th
+        mat-header-cell
+        mat-sort-header
+        *matHeaderCellDef
+        class="table-header"
+      >
+        Last Updated By
+      </th>
+      <td mat-cell *matCellDef="let element" class="table-row">
+        <div>
+          {{ element.lastUpdatedBy.name }}
+          <div class="text-icon">
+            <div>
+              <mat-icon svgIcon="clock" class="icon-size"></mat-icon>
+            </div>
+            <div>{{ element.lastUpdatedBy.timestamp }}</div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        class="table-header"
+      >
+        Actions
+      </th>
+      <td mat-cell *matCellDef="let element" class="table-row">
+        <div class="one-row-icon">
+          <button mat-icon-button (click)="edit(element)">
+            <mat-icon svgIcon="edit"></mat-icon>
+          </button>
+          <button mat-icon-button (click)="delete(element)">
+            <mat-icon svgIcon="trash"></mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Define table columns -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <div class="pagination">
+    <mat-paginator
+      #paginator
+      [length]="100"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="next"
+    >
+    </mat-paginator>
+  </div>
+</div>

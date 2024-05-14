@@ -1,0 +1,56 @@
+<mat-card class="header-title">
+  <div class="row">
+    <div class="title">Dashboard</div>
+  </div>
+</mat-card>
+
+<div class="panel">
+  <mat-card>
+    <div class="row pannel-section">
+      <div class="tab-wrap dashbord-tab">
+        <mat-button-toggle-group class="left-elements button-size">
+          <mat-button-toggle class="toggles" checked="true">Last 24 Hours</mat-button-toggle>
+          <mat-button-toggle class="toggles">Last 7 Days</mat-button-toggle>
+          <mat-button-toggle class="toggles">Last 1 Months</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+      <app-status-cards></app-status-cards>
+      <div class="dash-tabletilewrap">
+        <div class="title">Recent Operations</div>
+        <div class="map-list-iconwrap tab-wrap">
+          <mat-button-toggle-group [(ngModel)]="viewStyle">
+            <mat-button-toggle class="toggles" value="table">
+              <mat-icon svgIcon="listactive" class="pointer myIcon"></mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle class="toggles" value="chart">
+              <mat-icon svgIcon="graph" class="pointer graphicon"></mat-icon>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+      <div class="dash-tablewrap" *ngIf="viewStyle === 'table'">
+        <div class="title-wrap">
+          <div class="title">Failed</div>
+          <div class="view-link" [routerLink]="['/run-history']" routerLinkActive="router-link-active">View All</div>
+        </div>
+        <div class="table">
+          <app-failed-integrations></app-failed-integrations>
+        </div>
+      </div>
+      <div class="dash-tablewrap"  *ngIf="viewStyle === 'table'">
+        <div class="title-wrap">
+          <div class="title">Processing and Succeeded</div>
+          <div class="view-link" [routerLink]="['/run-history']" routerLinkActive="router-link-active">View All</div>
+        </div>
+        <div class="table">
+          <app-processing-succeeded-integrations></app-processing-succeeded-integrations>
+        </div>
+      </div>
+      <div class="dash-tablewrap"  *ngIf="viewStyle === 'chart'">
+        <div>
+          <app-integration-operations-chart></app-integration-operations-chart>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

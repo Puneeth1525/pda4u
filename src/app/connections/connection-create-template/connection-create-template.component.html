@@ -1,0 +1,325 @@
+<div class="connection-create-template">
+  <div class="headerContainer">
+    <div class="left-elements">
+      <div class="left-child">
+        <div class="back-circle">
+          <div
+            class="circle"
+            [routerLink]="['/connections/view/list']"
+            routerLinkActive="router-link-active"
+          >
+            <mat-icon class="back" svgIcon="back">arrow_back</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="right-child">
+        <div class="bread-crum">Connections / <span>New Connection</span></div>
+        <div class="template-label">Create New Connection</div>
+      </div>
+    </div>
+
+    <div class="right-elements">
+      <button
+        class="theme-button active-btn"
+        mat-flat-button
+        aria-label="Edit Template"
+        routerLinkActive="button-active"
+        routerLink="/connections/view"
+      >
+        <mat-icon svgIcon="test"></mat-icon>Test
+      </button>
+
+      <button
+        class="theme-button orange-btn"
+        mat-flat-button
+        aria-label="Edit Template"
+        routerLinkActive="button-active"
+        routerLink="/connections/view"
+      >
+        <mat-icon svgIcon="save"></mat-icon>Save
+      </button>
+    </div>
+  </div>
+  <div class="childContainer">
+    <div class="inner-headerContainer">
+      <div class="left-elements">
+        <div class="right-child">
+          <div class="temp-properties-name">Connection Details</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="full-width">
+        <div class="one-line">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Connection Name *</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Connection name"
+                  [formControl]="emailFormControl"
+                />
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Connection Name is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Partner *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <mat-select placeholder="Select">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="one-line">
+          <div class="one-third-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Description *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <input matInput placeholder="Enter Description" />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="one-line">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Connection Type *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <mat-select
+                  (valueChange)="selectionConnectionValue($event)"
+                  placeholder="Connection Type"
+                >
+                  <mat-option
+                    *ngFor="let option of connectionType"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="one-third-box" *ngIf="selectionConnection !== ''">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">URL *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <input matInput placeholder="Enter URL" />
+                <mat-hint
+                  class="input-hint"
+                  *ngIf="selectionConnection === 'AWS'"
+                  >Example: s3://abc.com</mat-hint
+                >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="one-line" *ngIf="selectionConnection === 'SFTP'">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Username *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <input matInput placeholder="Enter Username" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Authentication Type *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <input matInput placeholder="Enter Authentication Type" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="right-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Key File *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <mat-icon
+                  matSuffix
+                  svgIcon="upload-icon"
+                  class="upload-icon"
+                ></mat-icon>
+                <input
+                  matInput
+                  placeholder="Upload Encryption Key"
+                  (click)="imgFileInputs.click()"
+                />
+                <input
+                  hidden
+                  type="file"
+                  (change)="onFileSelected()"
+                  #imgFileInputs
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="one-line" *ngIf="selectionConnection === 'AWS'">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Access Key ID *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <input matInput placeholder="Enter Username" />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="one-third-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Secret Access Key *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <input matInput placeholder="Enter Authentication Type" />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="one-line" *ngIf="selectionConnection === 'AWS'">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Region *</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <mat-select placeholder="Select">
+                  <mat-option
+                    *ngFor="let option of connectionType"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="encry-wrap" *ngIf="selectionConnection !== ''">
+          <div class="connection-aws-title">
+            <mat-icon svgIcon="lock"></mat-icon>Encryption
+            <mat-slide-toggle
+              class="switch"
+              color="primary"
+              [(ngModel)]="isEncryptionEnabled"
+            >
+            </mat-slide-toggle>
+          </div>
+          <div class="one-line">
+            <div class="left-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Encryption Algorithm *</label>
+                </div>
+                <mat-form-field appearance="outline" class="select-container">
+                  <mat-select
+                    placeholder="Encryption Algorithm"
+                    [disabled]="!isEncryptionEnabled"
+                  >
+                    <mat-option *ngFor="let option of options" [value]="option">
+                      {{ option }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="one-third-box" *ngIf="selectionConnection !== ''">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Encryption Key *</label>
+                </div>
+                <mat-form-field appearance="outline" class="select-container">
+                  <mat-icon
+                    matSuffix
+                    svgIcon="upload-icon"
+                    class="upload-icon"
+                  ></mat-icon>
+                  <input
+                    matInput
+                    placeholder="Upload Encryption Key"
+                    (click)="imgFileInputs.click()"
+                    [disabled]="!isEncryptionEnabled"
+                  />
+                  <input
+                    hidden
+                    type="file"
+                    (change)="onFileSelected()"
+                    #imgFileInputs
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="connection-aws-title">
+            <mat-icon svgIcon="compress"></mat-icon>Compression<mat-slide-toggle
+              class="switch"
+              color="primary"
+              [(ngModel)]="isCompressionEnabled"
+            >
+            </mat-slide-toggle>
+          </div>
+          <div class="one-line">
+            <div class="left-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Compression Algorithm *</label>
+                </div>
+                <mat-form-field appearance="outline" class="select-container">
+                  <mat-select
+                    placeholder="Compression Algorithm"
+                    [disabled]="!isCompressionEnabled"
+                  >
+                    <mat-option *ngFor="let option of options" [value]="option">
+                      {{ option }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- *ngIf="selectionConnection === 'SFTP'" -->
+            <div class="one-third-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Compression Level *</label>
+                </div>
+                <mat-form-field appearance="outline" class="select-container">
+                  <input
+                    matInput
+                    placeholder="Enter Compression Level"
+                    [disabled]="!isCompressionEnabled"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

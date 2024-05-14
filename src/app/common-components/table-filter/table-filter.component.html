@@ -1,0 +1,76 @@
+<div class="table-filter-section">
+  <div class="row search-section">
+    <app-status-filter></app-status-filter>
+    <div class="right-elements">
+      <app-global-table-search searchPlaceHolder="Search within the Table" widthClass="width-350px"></app-global-table-search>
+    </div>
+  </div>
+  <div class="row filter-section">
+    <div class="filter-options">
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="small-dropdown"
+      >
+        <mat-label>Company</mat-label>
+        <mat-select
+          placeholder="Select Company"
+          multiple
+          class="label-space"
+        >
+          <mat-option *ngFor="let option of options" value="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="small-dropdown"
+      >
+        <mat-label>Account </mat-label>
+        <mat-select placeholder="Select Account" multiple class="label-space">
+          <mat-option *ngFor="let option of options" value="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="date-range-picker"
+        color="primary"
+      >
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+          <input
+            matStartDate
+            formControlName="start"
+            placeholder="Start date"
+            [disabled]="true"
+          />
+          <input
+            matEndDate
+            formControlName="end"
+            placeholder="End date"
+            [disabled]="true"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+          >Invalid start date</mat-error
+        >
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+          >Invalid end date</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="filter-reset">
+      <button mat-stroked-button>Reset Filters</button>
+    </div>
+  </div>
+</div>

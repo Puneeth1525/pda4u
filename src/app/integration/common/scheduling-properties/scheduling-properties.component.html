@@ -1,0 +1,63 @@
+<div class="form">
+  <div class="right-panel-header">
+    <div class="right-panel-left-content">
+      <div class="bread-crum">
+        <p class="tproperties">Scheduling Properties</p>
+      </div>
+    </div>
+  </div>
+  <div class="right-panel-main-content">
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Effective Date/Time *</label>
+          </div>
+          <!-- <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Effective Date/Time " />
+          </mat-form-field> -->
+          <mat-form-field appearance="outline">
+            <input matInput type="datetime-local" placeholder="Enter Effective Date/Time ">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Repeating</label>
+          </div>
+          <mat-radio-group value="1" color="primary" aria-label="Select an option">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+    <div class="one-line">
+      <div class="left-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Frequency</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-select placeholder="Select">
+              <mat-option *ngFor="let option of options" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="right-box">
+        <div class="input-container">
+          <div class="label-container">
+            <label class="input-label">Retry Interval  *</label>
+          </div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Enter Retry Interval " />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

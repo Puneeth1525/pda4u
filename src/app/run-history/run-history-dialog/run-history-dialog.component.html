@@ -1,0 +1,38 @@
+<div class="integration-modal">
+  <div class="modal-title">
+    <div class="title">Integration Details</div>
+    <div class="close-icon" mat-dialog-close>
+      <mat-icon svgIcon="close"></mat-icon>
+    </div>
+  </div>
+  <div mat-dialog-content class="modal-content">
+    <div class="integrationcontainer-wrap">
+      <div class="one-line" *ngFor="let element of elementDetails">
+        <div class="left-box">
+          <div class="input-container">
+            <div class="label-container">
+              <label class="input-label">{{ element.label }} </label>
+            </div>
+            <label
+              class="input-value"
+              [ngClass]="{ 'file-name': element.type === 'file' }"
+              >{{ element.value }}</label
+            >
+          </div>
+        </div>
+        <div class="right-box" *ngIf="element.type === 'text'">
+          <mat-icon svgIcon="copy"></mat-icon>
+        </div>
+        <div class="right-box" *ngIf="element.type === 'file'">
+          <mat-icon svgIcon="copy"></mat-icon>
+          <mat-icon svgIcon="download"></mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="modal-buttons">
+    <div class="right-elements">
+      <button class="btn primary-btn" mat-dialog-close>Ok</button>
+    </div>
+  </div>
+</div>

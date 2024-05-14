@@ -1,0 +1,82 @@
+<div class="integration-create-template">
+  <div class="headerContainer">
+    <div class="left-elements">
+      <div class="left-child">
+        <div class="back-circle">
+          <div class="circle" [routerLink]="['/integrations/list']" routerLinkActive="router-link-active">
+            <mat-icon class="back" svgIcon="back">arrow_back</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="right-child">
+        <div class="bread-crum">Integration / <span>New Integration</span></div>
+        <div class="template-label">Create New Integration</div>
+      </div>
+    </div>
+    <div class="right-elements">
+      <button
+        class="theme-button active-btn"
+        mat-flat-button
+        aria-label="Create Template"
+        (click)="drawer.toggle()"
+      >
+        <mat-icon svgIcon="check-circle"></mat-icon>Validate
+      </button>
+      <button
+        class="theme-button active-btn"
+        mat-flat-button
+        aria-label="Create Template"
+      >
+        <mat-icon svgIcon="save"></mat-icon>Save As Draft
+      </button>
+      <button
+        class="theme-button orange-btn"
+        mat-flat-button
+        aria-label="Create Template"
+        mat-stroked-button
+        (click)="openSnackBar()"
+      >
+        <mat-icon svgIcon="share"></mat-icon>Publish
+      </button>
+    </div>
+  </div>
+  <mat-drawer-container class="drawer-container" autosize>
+    <div class="childContainer">
+      <app-form-header [headerData]="headerData"></app-form-header>
+      <div class="main-container bottom-radius-none">
+        <div class="left-panel integrate-left-panel">
+          <app-integration-properties-menu
+            [onMenuClick]="menuCallback"
+          ></app-integration-properties-menu>
+        </div>
+        <div class="right-panel integrate-right-panel">
+          <app-integration-properties
+            *ngIf="showProperties === 'integration_properties'"
+          ></app-integration-properties>
+          <app-alerts-properties
+            *ngIf="showProperties === 'alerts_properties'"
+          ></app-alerts-properties>
+          <app-scheduling-properties
+            *ngIf="showProperties === 'scheduling_properties'"
+          ></app-scheduling-properties>
+          <app-response-properties
+            *ngIf="showProperties === 'response_properties'"
+          ></app-response-properties>
+          <app-dependencies-properties
+            *ngIf="showProperties === 'dependencies_properties'"
+          ></app-dependencies-properties>
+          <app-error-code-mapping-properties
+            *ngIf="showProperties === 'error_code_mapping_properties'"
+          ></app-error-code-mapping-properties>
+          <app-input-properties
+            *ngIf="showProperties === 'input_properties'"
+          ></app-input-properties>
+        </div>
+      </div>
+      <app-delete-button></app-delete-button>
+    </div>
+    <mat-drawer #drawer mode="side" position="end">
+      <app-error-side-panel [drawer]="drawer"></app-error-side-panel>
+    </mat-drawer>
+  </mat-drawer-container>
+</div>
