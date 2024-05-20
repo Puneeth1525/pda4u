@@ -46,7 +46,7 @@
     [ngClass]="{ menuhandle: isSidebarOpen }"
   >
     <mat-nav-list>
-      <mat-list-item
+      <!-- <mat-list-item
         routerLink="/dashboard"
         routerLinkActive="active-list-item"
       >
@@ -96,7 +96,7 @@
           <mat-icon svgIcon="run-history" class="pointer myIcon"></mat-icon>
           <span class="menu-name">Run History</span>
         </h4>
-      </mat-list-item>
+      </mat-list-item> -->
       <mat-list-item
         routerLink="/quote-summary"
         routerLinkActive="active-list-item"
@@ -108,7 +108,7 @@
       </mat-list-item>
 
 
-      <!-- <mat-list-item
+      <mat-list-item
         routerLink="/a"
         routerLinkActive="active-list-item"
       >
@@ -134,7 +134,7 @@
           <mat-icon svgIcon="templates" class="pointer myIcon"></mat-icon>
           <span class="menu-name">nav item 4</span>
         </h4>
-      </mat-list-item> -->
+      </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content [ngClass]="{ drawerWidth: !isSidebarOpen }">

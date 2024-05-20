@@ -185,7 +185,7 @@ export class QuoteSummaryComponent {
 
   openAccountLookup() {
     this.dialog.open(QuoteAccountLookupComponent, {
-      minWidth: '600px',
+      minWidth: '1000px',
     });
   }
 
