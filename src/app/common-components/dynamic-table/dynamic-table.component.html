@@ -35,9 +35,20 @@
         <!-- Simple field -->
         <!-- Field with name -->
         <div *ngIf="item === 'Quote_no'">
+          <a [routerLink]="['/quote-detail', element[item]]">
           <span class="name-color">{{ element[item] }}</span>
+          </a>
         </div>
         <div class="run-id-width" *ngIf="item === 'Creation_Date'">
+          <span>{{ element[item] }}</span>
+        </div>
+        <div class="run-id-width" *ngIf="item === 'Name'">
+          <span>{{ element[item] }}</span>
+        </div>
+        <div class="run-id-width" *ngIf="item === 'Number'">
+          <span>{{ element[item] }}</span>
+        </div>
+        <div class="run-id-width" *ngIf="item === 'Address'">
           <span>{{ element[item] }}</span>
         </div>
         <div *ngIf="item === 'Company_Name'">
@@ -99,11 +110,11 @@
         </div>
       </td>
     </ng-container>
-    <tr
+    <!-- <tr
       mat-header-row
       class="small-header"
       *matHeaderRowDef="secondHeader"
-    ></tr>
+    ></tr> -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>

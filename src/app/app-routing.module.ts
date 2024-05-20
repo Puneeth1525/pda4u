@@ -22,6 +22,7 @@ import { ConnectionCreateTemplateComponent } from './connections/connection-crea
 import { ConnectionDetailsComponent } from './connections/connection-detail/connection-detail.component';
 import { CreateTemplateComponent } from './templates/create-template/create-template.component';
 import { QuoteSummaryComponent } from './quote-summary/quote-summary.component';
+import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -54,6 +55,7 @@ const routes: Routes = [
   },
   { path: 'run-history', component: RunHistoryComponent },
   { path: 'quote-summary', component: QuoteSummaryComponent },
+  { path: 'quote-detail/:quote_no', component: QuoteDetailComponent },
   {
     path: 'templates',
     children: [

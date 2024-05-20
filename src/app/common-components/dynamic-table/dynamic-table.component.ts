@@ -36,9 +36,7 @@ export class DynamicTableComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource = new MatTableDataSource(
-      this.tableDataSource || [
-
-      ]
+      this.tableDataSource
     );
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -107,8 +105,16 @@ export class DynamicTableComponent implements AfterViewInit {
   }
 
   returnFileName(value) {
-    return `${value.substring(0, 9)}..${value.substring(value.length - 12)}`;
+    if (value && value.length > 21) {
+      const truncatedValue = value.substring(0, 9) + '..' + value.substring(value.length - 12);
+      return truncatedValue;
+    } else if (value) {
+      return value;
+    } else {
+      return '';
+    }
   }
+
 
   openDialog() {
     const dialogRef = this.dialog.open(ExecutionLogDialogComponent);

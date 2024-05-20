@@ -1,0 +1,363 @@
+
+<div class="connection-create-template">
+  <div class="headerContainer">
+    <div class="left-elements">
+      <div class="left-child">
+        <div class="back-circle">
+          <div
+            class="circle"
+            [routerLink]="['/quote-summary']"
+            routerLinkActive="router-link-active"
+          >
+            <mat-icon class="back" svgIcon="back">arrow_back</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="right-child">
+        <div class="bread-crum">Quote Summary / <span>543CUP</span></div>
+        <!-- <div class="template-label"></div> -->
+      </div>
+    </div>
+
+    <div class="right-elements">
+      <!-- <button
+        class="theme-button active-btn"
+        mat-flat-button
+        aria-label="Edit Template"
+        routerLinkActive="button-active"
+        routerLink="/connections/view"
+      >
+        <mat-icon svgIcon="test"></mat-icon>Test
+      </button>
+
+      <button
+        class="theme-button orange-btn"
+        mat-flat-button
+        aria-label="Edit Template"
+        routerLinkActive="button-active"
+        routerLink="/connections/view"
+      >
+        <mat-icon svgIcon="save"></mat-icon>Save
+      </button> -->
+    </div>
+  </div>
+  <div class="childContainer">
+    <div class="inner-headerContainer">
+      <div class="left-elements">
+        <div class="right-child">
+          <div class="temp-properties-name">Quote Details</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="full-width">
+        <div class="one-line">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Quote:</label>
+              </div>
+              <label class="input-value">{{quoteDetails.quoteNumber}}</label>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Exceptions:</label>
+              </div>
+              <label class="input-value">{{ exceptionsList }}</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="inner-headerContainer">
+          <div class="left-elements">
+            <div class="right-child">
+              <div class="temp-properties-name">Contact Information</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="one-line">
+          <div class="left-box">
+
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Account *</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <input
+                  type="text"
+                  matInput
+                  placeholder="{{quoteDetails.customerInformation.account}}"
+                />
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                   Account is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">dd1</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <mat-select placeholder="{{quoteDetails.customerInformation.dd1}}">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="right-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">dd2</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <mat-select placeholder="{{quoteDetails.customerInformation.dd2}}">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="one-line">
+          <div class="one-third-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">R-TB1</label>
+              </div>
+              <mat-form-field appearance="outline" class="select-container">
+                <input matInput value="{{quoteDetails.customerInformation.rtb1}}" />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="one-line">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Name *</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <input
+                  type="text"
+                  matInput
+                  value="{{quoteDetails.customerInformation.contactInformation.name}}"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Phone *</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <input
+                  type="text"
+                  matInput
+                  value="{{quoteDetails.customerInformation.contactInformation.phone}}"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="one-line">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Email *</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <input matInput value="{{quoteDetails.customerInformation.contactInformation.email}}" />
+              </mat-form-field>
+              <!-- <div *ngIf="emailError" class="error-message">{{ emailError }}</div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="inner-headerContainer">
+          <div class="left-elements">
+            <div class="right-child">
+              <div class="temp-properties-name">Shipping Information</div>
+            </div>
+          </div>
+        </div>
+        <div class="one-line">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Origin</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-select placeholder="{{quoteDetails.shippingInformation.origin.country}}">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="input-container" style="display: flex; gap: 10px;">
+                <mat-form-field appearance="outline">
+                  <input class="api" matInput value="{{quoteDetails.shippingInformation.origin.zipCode}}" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <input class="api" matInput value="{{quoteDetails.shippingInformation.origin.city}}" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <input class="api" matInput value="{{quoteDetails.shippingInformation.origin.stateProvince}}" />
+                </mat-form-field>
+              </div>
+
+            </div>
+          </div>
+          <div class="right-box clear-btn">
+            <button
+        class="theme-button active-btn"
+        mat-flat-button
+        aria-label="Edit Template"
+        (click)="clearOrigin()"
+      >
+        <mat-icon svgIcon="edit-white"></mat-icon>Clear
+      </button>
+
+          </div>
+        </div>
+        <div class="one-line">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">Destination</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-select placeholder="{{quoteDetails.shippingInformation.destination.country}}">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="input-container" style="display: flex; gap: 10px;">
+                <mat-form-field appearance="outline">
+                  <input class="api" matInput value="{{quoteDetails.shippingInformation.destination.zipCode}}" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <input class="api" matInput value="{{quoteDetails.shippingInformation.destination.city}}" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <input class="api" matInput value="{{quoteDetails.shippingInformation.destination.stateProvince}}" />
+                </mat-form-field>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="right-box clear-btn">
+            <button
+        class="theme-button active-btn"
+        mat-flat-button
+        aria-label="Edit Template"
+        (click)="clearDestination()"
+      >
+        <mat-icon svgIcon="edit-white"></mat-icon>Clear
+      </button>
+
+          </div>
+        </div>
+        <div class="inner-headerContainer">
+          <div class="left-elements">
+            <div class="right-child">
+              <div class="temp-properties-name">Com</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="one-line" *ngFor="let com of quoteDetails.com.coms.slice(0, quoteDetails.com.coms.length - 1); let i = index">
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">dd{{ i + 2 }}</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-select placeholder="{{com.dd3}}">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+                <!-- <input matInput value="{{com.dd3}}" /> -->
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">tb{{ i + 2 }}</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <input matInput value="{{com.tb2}}" />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="inner-headerContainer">
+          <div class="left-elements">
+            <div class="right-child">
+              <div class="temp-properties-name">Total Charges</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="billing-container">
+          <div class="updated"><span>Base Rate</span>{{quoteDetails.totalCharges.baseRate}} </div>
+          <div class="updated"><span>Acc</span> {{quoteDetails.totalCharges.acc}}</div>
+          <div class="updated final-rate"><span>Final Rate </span> {{quoteDetails.totalCharges.finalRate}}</div>
+        </div>
+
+
+
+
+      </div>
+
+
+
+
+      <!--Main Container End-->
+    </div>
+    <div class="delete-container">
+
+      <button
+        class="theme-button active-btn"
+        mat-flat-button
+      >
+        <mat-icon svgIcon="test"></mat-icon>Test
+      </button>
+
+      <button
+        class="theme-button orange-btn"
+        mat-flat-button
+      >
+        <mat-icon svgIcon="save"></mat-icon>Save
+      </button>
+      <button
+        class="theme-button green-btn"
+        mat-flat-button
+      >
+        <mat-icon svgIcon="share"></mat-icon>Publish
+      </button>
+    </div>
+  </div>
+</div>

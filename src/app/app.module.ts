@@ -107,6 +107,8 @@ import { RunHistoryDialogComponent } from './run-history/run-history-dialog/run-
 import { DropDownWithSearchComponent } from './common-components/drop-down-with-search/drop-down-with-search.component';
 import { GlobalTableSearchComponent } from './common-components/global-table-search/global-table-search.component';
 import { QuoteSummaryComponent } from './quote-summary/quote-summary.component';
+import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
+import { QuoteAccountLookupComponent } from './quote-account-lookup/quote-account-lookup.component';
 
 @NgModule({
   declarations: [
@@ -179,6 +181,8 @@ import { QuoteSummaryComponent } from './quote-summary/quote-summary.component';
     DropDownWithSearchComponent,
     GlobalTableSearchComponent,
     QuoteSummaryComponent,
+    QuoteDetailComponent,
+    QuoteAccountLookupComponent,
   ],
   imports: [
     BrowserModule,

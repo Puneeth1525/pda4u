@@ -1,3 +1,11 @@
+.custom-pos {
+  margin-top: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-left: 45%;
+}
+
 .run-history {
   .header-title {
     box-shadow: none;
@@ -14,6 +22,22 @@
       padding: 24px;
     }
   }
+
+  .error-message {
+    color: red;
+    font-size: 10px;
+    margin-left: 2px;
+  }
+
+
+  .show-border {
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    padding: 5px;
+    margin: 2px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
   .panel {
     padding: 32px 24px;
     background-color: #f9fafb;

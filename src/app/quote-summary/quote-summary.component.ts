@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { ICountryAndCode } from '../partner/create-partner/create-partner.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import axios from 'axios';
+import { MatDialog } from '@angular/material/dialog';
+import { RunHistoryDialogComponent } from '../run-history/run-history-dialog/run-history-dialog.component';
+import { QuoteAccountLookupComponent } from '../quote-account-lookup/quote-account-lookup.component';
+
 
 @Component({
   selector: 'app-quote-summary',
@@ -7,6 +13,19 @@ import { ICountryAndCode } from '../partner/create-partner/create-partner.compon
   styleUrls: ['./quote-summary.component.scss']
 })
 export class QuoteSummaryComponent {
+  email: string = '';
+  emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  emailError: string | null = null;
+  quoteNumber: string = '';
+  fromDate: string = '';
+  toDate: string = '';
+  origin: string  = '';
+  destination: string = '';
+  companyName: string = '';
+  allExceptions: boolean;
+  allQuotes: boolean;
+  currentExceptions: boolean;
+  searchType: string = '1';
   tableHeader: any = [
     'Quote_no',
     'Creation_Date',
@@ -14,80 +33,9 @@ export class QuoteSummaryComponent {
     'Account',
     'Exception',
     'UserID',
-  ];;
+  ];
+  fetchingData: boolean;
   tableDataSource: any = [
-    {
-      Quote_no: 'Q789012',
-      Creation_Date: '2024-05-14',
-      Company_Name: 'XYZ Corporation',
-      Account: 'Account456',
-      Exception: 'Index Out of Range Exception',
-      UserID: 'user456',
-    },
-    {
-      Quote_no: 'Q345678',
-      Creation_Date: '2024-05-15',
-      Company_Name: 'LMN Corporation',
-      Account: 'Account789',
-      Exception: 'File Not Found Exception',
-      UserID: 'user789',
-    },
-    {
-      Quote_no: 'Q901234',
-      Creation_Date: '2024-05-16',
-      Company_Name: 'PQR Corporation',
-      Account: 'Account012',
-      Exception: 'Database Connection Exception',
-      UserID: 'user012',
-    },
-    {
-      Quote_no: 'Q567890',
-      Creation_Date: '2024-05-17',
-      Company_Name: 'DEF Corporation',
-      Account: 'Account345',
-      Exception: 'Permission Denied Exception',
-      UserID: 'user345',
-    },
-    {
-      Quote_no: 'Q234567',
-      Creation_Date: '2024-05-18',
-      Company_Name: 'GHI Corporation',
-      Account: 'Account678',
-      Exception: 'Invalid Input Exception',
-      UserID: 'user678',
-    },
-    {
-      Quote_no: 'Q890123',
-      Creation_Date: '2024-05-19',
-      Company_Name: 'JKL Corporation',
-      Account: 'Account901',
-      Exception: 'Runtime Exception',
-      UserID: 'user901',
-    },
-    {
-      Quote_no: 'Q456789',
-      Creation_Date: '2024-05-20',
-      Company_Name: 'STU Corporation',
-      Account: 'Account234',
-      Exception: 'Syntax Error Exception',
-      UserID: 'user234',
-    },
-    {
-      Quote_no: 'Q012345',
-      Creation_Date: '2024-05-21',
-      Company_Name: 'VWX Corporation',
-      Account: 'Account567',
-      Exception: 'Arithmetic Exception',
-      UserID: 'user567',
-    },
-    {
-      Quote_no: 'Q678901',
-      Creation_Date: '2024-05-22',
-      Company_Name: 'NOP Corporation',
-      Account: 'Account890',
-      Exception: 'Type Mismatch Exception',
-      UserID: 'user890',
-    },
     {
       Quote_no: 'Q345012',
       Creation_Date: '2024-05-23',
@@ -121,5 +69,124 @@ export class QuoteSummaryComponent {
       numericCode: "008",
     },
   ];
-  constructor() {}
+  constructor(private cdRef: ChangeDetectorRef, public dialog: MatDialog) {}
+
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  async submit() {
+    this.fetchingData = true;
+    let requestBody = {
+      account: 'string',
+      companyName: 'string',
+      origin: {
+        city: this.origin  || 'string',
+        country: 'string',
+        stateProvince: 'string',
+        zipCode: 'string'
+      },
+      emailAddress: this.email || 'string',
+      exception: 'string',
+      fromDateTime: this.fromDate || 'string',
+      destination: {
+        city: this.destination || 'string',
+        country: 'string',
+        stateProvince: 'string',
+        zipCode: 'string'
+      },
+      quoteNumber: this.quoteNumber || 'string',
+      toDateTime: this.toDate || 'string',
+      type: {
+        allExceptions: this.searchType === '2' || true,
+        allQuotes: this.searchType === '3'  || true,
+        currentExceptions: this.searchType === '1' || true
+      }
+    }
+    console.log(requestBody)
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/quote/search', requestBody);
+
+      this.tableDataSource = response.data.searchExceptionResponse.map((item: any) => {
+        return {
+          Quote_no: item.quoteId,
+          Creation_Date: item.quoteTimestamp,
+          Company_Name: item.companyName,
+          Account: item.account,
+          Exception: item.exceptions.join(', '),
+          UserID: 'Default'
+        };
+      });
+      this.cdRef.detectChanges();
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      this.fetchingData = false;
+    }
+  }
+
+
+  validateEmail() {
+    console.log("reached")
+    if (!this.emailRegex.test(this.email)) {
+      this.emailError = 'Invalid email format';
+    } else {
+      this.emailError = null;
+    }
+  }
+
+  async fetchData() {
+    this.fetchingData = true;
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/quote/search', {
+        account: 'string',
+        companyName: 'string',
+        destination: {
+          city: 'string',
+          country: 'string',
+          stateProvince: 'string',
+          zipCode: 'string'
+        },
+        emailAddress: 'string',
+        exception: 'string',
+        fromDateTime: 'string',
+        origin: {
+          city: 'string',
+          country: 'string',
+          stateProvince: 'string',
+          zipCode: 'string'
+        },
+        quoteNumber: 'string',
+        toDateTime: 'string',
+        type: {
+          allExceptions: true,
+          allQuotes: true,
+          currentExceptions: true
+        }
+      });
+
+      this.tableDataSource = response.data.searchExceptionResponse.map((item: any) => {
+        return {
+          Quote_no: item.quoteId,
+          Creation_Date: item.quoteTimestamp,
+          Company_Name: item.companyName,
+          Account: item.account,
+          Exception: item.exceptions.join(', '),
+          UserID: 'Default' // Fill in with actual data
+        };
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+    this.fetchingData = false;
+    console.log(this.tableDataSource)
+  }
+
+  openAccountLookup() {
+    this.dialog.open(QuoteAccountLookupComponent, {
+      minWidth: '600px',
+    });
+  }
+
 }

@@ -18,6 +18,7 @@
         </div>
       </div>
       <div class="main-container">
+
         <div class="full-width">
           <div class="one-line">
             <div class="left-box">
@@ -26,7 +27,7 @@
                   <label class="input-label">Quote Number </label>
                 </div>
                 <mat-form-field appearance="outline">
-                  <input matInput placeholder="Enter Partner Name" />
+                  <input matInput placeholder="Enter Quote Number" [(ngModel)]="quoteNumber"/>
                 </mat-form-field>
               </div>
             </div>
@@ -36,20 +37,17 @@
                   <label class="input-label">Account </label>
                 </div>
                 <mat-form-field appearance="outline" class="select-container">
-                  <mat-select placeholder="Select Partner Type">
-                    <mat-option *ngFor="let option of options" [value]="option">
-                      {{ option }}
-                    </mat-option>
-                  </mat-select>
+                  <input matInput type="search" />
+                  <mat-icon (click)="openAccountLookup()" matSuffix>search</mat-icon>
                 </mat-form-field>
               </div>
             </div>
-            <div class="right-box">
+            <div class="right-box show-border">
               <div class="input-container">
                 <div class="label-container">
                   <label class="input-label">Input Must Exist *</label>
                 </div>
-                <mat-radio-group value="1" style="display: flex; flex-direction: column;" color="primary" aria-label="Select an option">
+                <mat-radio-group [(ngModel)]="searchType" value="1" style="display: flex; flex-direction: column;" color="primary" aria-label="Select an option">
                   <mat-radio-button value="1">Current Exception</mat-radio-button>
                   <mat-radio-button value="2">All Exceptions</mat-radio-button>
                   <mat-radio-button value="2">All Quotes</mat-radio-button>
@@ -67,7 +65,7 @@
                   <input matInput placeholder="Enter Effective Date/Time " />
                 </mat-form-field> -->
                 <mat-form-field appearance="outline">
-                  <input matInput type="datetime-local" placeholder="Enter Effective Date/Time ">
+                  <input [(ngModel)]="fromDate" matInput type="datetime-local" placeholder="Enter Effective Date/Time ">
                 </mat-form-field>
               </div>
             </div>
@@ -77,7 +75,7 @@
                   <label class="input-label">Origin</label>
                 </div>
                 <mat-form-field appearance="outline">
-                  <input matInput placeholder="Enter support email" />
+                  <input [(ngModel)]="origin" matInput placeholder="Enter Origin" />
                 </mat-form-field>
               </div>
             </div>
@@ -108,7 +106,7 @@
                   <input matInput placeholder="Enter Effective Date/Time " />
                 </mat-form-field> -->
                 <mat-form-field appearance="outline">
-                  <input matInput type="datetime-local" placeholder="Enter Effective Date/Time ">
+                  <input [(ngModel)]="toDate" matInput type="datetime-local" placeholder="Enter Effective Date/Time ">
                 </mat-form-field>
               </div>
             </div>
@@ -118,7 +116,7 @@
                   <label class="input-label">Destination</label>
                 </div>
                 <mat-form-field appearance="outline">
-                  <input matInput placeholder="Enter support email" />
+                  <input [(ngModel)]="destination" matInput placeholder="Enter Destination" />
                 </mat-form-field>
               </div>
             </div>
@@ -146,8 +144,9 @@
                   <label class="input-label">Email *</label>
                 </div>
                 <mat-form-field appearance="outline">
-                  <input matInput placeholder="Enter Name" />
+                  <input matInput placeholder="Enter Email" [(ngModel)]="email" (input)="validateEmail()" />
                 </mat-form-field>
+                <div *ngIf="emailError" class="error-message">{{ emailError }}</div>
               </div>
             </div>
             <div class="right-box">
@@ -168,6 +167,9 @@
 
           </div>
 
+          <button (click)="submit()" class="theme-button active-btn custom-pos" mat-flat-button>
+            <mat-icon svgIcon="save"></mat-icon>submit
+          </button>
         </div>
 
       </div>
@@ -175,15 +177,12 @@
     </div>
 
 
-        <button class="theme-button active-btn" mat-flat-button>
-          <mat-icon svgIcon="save"></mat-icon>submit
-        </button>
   </div>
 
   <div class="panel">
     <mat-card>
       <app-table-filter></app-table-filter>
-      <div class="row pannel-section">
+      <div *ngIf="!fetchingData" class="row pannel-section">
         <app-dynamic-table [tableDataSource]="tableDataSource" [displayedColumns]="tableHeader"></app-dynamic-table>
       </div>
     </mat-card>
