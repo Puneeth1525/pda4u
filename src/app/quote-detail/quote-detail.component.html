@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="right-child">
-        <div class="bread-crum">Quote Summary / <span>543CUP</span></div>
+        <div class="bread-crum">Quote Summary / <span>{{ quoteDetails.quoteNumber }}</span></div>
         <!-- <div class="template-label"></div> -->
       </div>
     </div>
@@ -311,6 +311,55 @@
               </mat-form-field>
             </div>
           </div>
+        </div>
+        <!-- new input fields added here -->
+        <div class="one-line"*ngFor="let newcom of newComList; let i = index; trackBy: trackByFn">
+
+          <div class="left-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">dd{{ i + 2 }}</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-select name="dd3" [(ngModel)]="newComList[i].dd3">
+                  <mat-option [value]="newComList[i].dd3">{{ newComList[i].dd3 }}</mat-option>
+                </mat-select>
+                <!-- <input matInput value="{{com.dd3}}" /> -->
+              </mat-form-field>
+            </div>
+          </div>
+
+          
+
+          <div class="middle-box">
+            <div class="input-container">
+              <div class="label-container">
+                <label class="input-label">tb{{ i + 2 }}</label>
+              </div>
+              <mat-form-field appearance="outline">
+                <input matInput type="text" [(ngModel)]="newComList[i].tb2" [name]="'tb2_' + i"
+              [ngClass]="{'is-invalid': isInvalid[i]}" (ngModelChange)="onInputChange(i, $event)">
+            <div *ngIf="isInvalid[i]" class="mat-error">
+              Please enter a valid value.
+            </div>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        
+
+
+
+
+        <div class="button-container">
+          <button 
+            class="theme-button active-btn"
+            mat-flat-button
+            aria-label="Edit Template"
+            (click)="addInputField()"
+          >
+            <mat-icon svgIcon="edit-white"></mat-icon>Add Com Details
+          </button>
         </div>
 
         <div class="inner-headerContainer">
