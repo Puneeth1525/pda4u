@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { switchMap } from 'rxjs/operators';
 import axios from 'axios'
+import { ComItem } from '../interface/quotedetailsresponse.interface';
 
 
 @Component({
@@ -24,6 +25,12 @@ export class QuoteDetailComponent implements OnInit {
   quoteDetails: any = {};
   errorMessage: string = '';
   exceptionsList: string = '';
+
+  // adding new input field
+  newComList:ComItem[] = [];
+  addComFirstTime: boolean = true;
+  isInvalid: boolean[] = [];
+  isButtonClicked: boolean = false;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
 
@@ -66,5 +73,44 @@ export class QuoteDetailComponent implements OnInit {
   selectionConnectionValue(e: any) {
     console.log(this.emailFormControl.hasError('required'));
     this.selectionConnection = e;
+  }
+
+
+  addInputField() {
+    
+    if (this.addComFirstTime) {
+      this.addComFirstTime = false;
+      this.newComList.push({
+        count: 0,
+        dd3: "dd3_value1",
+        tb2: ""
+      });
+    }else if ( this.newComList[this.newComList.length-1].tb2==="" ) {
+      this.isInvalid[this.newComList.length - 1] = true;
+    }else if(this.isInvalid.some(value => value === true)){
+      //do nothing
+    }else {
+      this.isInvalid[this.newComList.length - 1] = false;
+      this.newComList.push({
+        count: 0,
+        dd3: "dd3_value1",
+        tb2: ""
+      });
+    }
+    console.log(this.newComList);
+  }
+
+  trackByFn(index: number, item: ComItem): number {
+    return index; // Use index as the unique identifier
+  }
+
+  onInputChange(index: number, newValue: any) {
+    if(newValue==="") {
+      this.isInvalid[index] = true;
+    }else{
+      this.newComList[index].tb2 = newValue;
+      this.isInvalid[index] = false;
+    }
+    
   }
 }
