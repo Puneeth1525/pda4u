@@ -6,33 +6,86 @@
     </div>
   </div>
   <div mat-dialog-content class="modal-content">
-    <div class="integrationcontainer-wrap">
-      <div class="one-line">
-        <div class="left-box">
-          <div class="input-container">
-            <div class="label-container">
-              <label class="input-label">Account Name</label>
+
+
+    <mat-tab-group (selectedTabChange)="onTabChange($event)"
+     animationDuration="0ms" mat-stretch-tabs="false" mat-align-tabs="end">
+      <mat-tab label="Name">
+
+
+        <div class="integrationcontainer-wrap">
+          <div class="one-line">
+            <div class="left-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Account Name</label>
+                </div>
+                <mat-form-field appearance="outline" class="account-field">
+                  <input [(ngModel)]="accountName" matInput placeholder="Account Name" />
+                </mat-form-field>
+                <!-- <div *ngIf="emailError" class="error-message">{{ emailError }}</div> -->
+              </div>
             </div>
-            <mat-form-field appearance="outline">
-              <input matInput placeholder="Account Name" />
-            </mat-form-field>
-            <!-- <div *ngIf="emailError" class="error-message">{{ emailError }}</div> -->
+            <div class="middle-box">
+              <div class="input-container">
+                <button
+                  class="theme-button active-btn dialog-button"
+                  mat-flat-button
+                  (click)="onAccountSubmit()"
+                >
+                  <mat-icon svgIcon="search"></mat-icon>Submit
+                </button>
+              </div>
+            </div>
           </div>
+
+          <!-- <div *ngIf="!fetchingData" class="row pannel-section">
+            <app-dynamic-table [tableDataSource]="tableDataSource" [displayedColumns]="tableHeader"></app-dynamic-table>
+          </div> -->
+
+
         </div>
-        <div class="middle-box">
-          <div class="input-container">
 
-            <button
-            class="theme-button active-btn dialog-button"
-            mat-flat-button
-          >
-            <mat-icon svgIcon="search"></mat-icon>Submit
-          </button>
 
+      </mat-tab>
+      <mat-tab label="Address">
+
+
+        <div class="integrationcontainer-wrap">
+          <div class="one-line">
+            <div class="left-box">
+              <div class="input-container">
+                <div class="label-container">
+                  <label class="input-label">Address</label>
+                </div>
+                <mat-form-field appearance="outline" class="account-field">
+                  <input [(ngModel)]="address" matInput placeholder="Enter Address" />
+                </mat-form-field>
+                <!-- <div *ngIf="emailError" class="error-message">{{ emailError }}</div> -->
+              </div>
+            </div>
+            <div class="middle-box">
+              <div class="input-container">
+                <button
+                  class="theme-button active-btn dialog-button"
+                  mat-flat-button
+                  (click)="onAddressSubmit()"
+                >
+                  <mat-icon svgIcon="search"></mat-icon>Submit
+                </button>
+              </div>
+            </div>
           </div>
+
+
         </div>
-      </div>
-    </div>
+
+        <!-- <div *ngIf="!fetchingData" class="row pannel-section">
+          <app-dynamic-table [tableDataSource]="tableDataSource" [displayedColumns]="tableHeader"></app-dynamic-table>
+        </div> -->
+
+      </mat-tab>
+    </mat-tab-group>
 
     <div *ngIf="!fetchingData" class="row pannel-section">
       <app-dynamic-table [tableDataSource]="tableDataSource" [displayedColumns]="tableHeader"></app-dynamic-table>

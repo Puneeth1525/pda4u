@@ -109,6 +109,14 @@ import { GlobalTableSearchComponent } from './common-components/global-table-sea
 import { QuoteSummaryComponent } from './quote-summary/quote-summary.component';
 import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
 import { QuoteAccountLookupComponent } from './quote-account-lookup/quote-account-lookup.component';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule
+} from '@angular-material-components/datetime-picker';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -230,6 +238,11 @@ import { QuoteAccountLookupComponent } from './quote-account-lookup/quote-accoun
        */
       echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
     }),
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    MatAutocompleteModule,
+    MatTabsModule,
   ],
   providers: [CdkColumnDef],
   bootstrap: [AppComponent],

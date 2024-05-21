@@ -85,16 +85,9 @@
               <div class="label-container">
                 <label class="input-label">Account *</label>
               </div>
-              <mat-form-field appearance="outline">
-                <input
-                  type="text"
-                  matInput
-                  placeholder="{{quoteDetails.customerInformation.account}}"
-                />
-                <mat-icon matSuffix>search</mat-icon>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                   Account is required
-                </mat-error>
+              <mat-form-field appearance="outline" class="select-container">
+                <input [(ngModel)]="accountName" matInput type="search" />
+                <mat-icon (click)="openAccountLookup()" matSuffix>search</mat-icon>
               </mat-form-field>
             </div>
           </div>
@@ -134,7 +127,7 @@
                 <label class="input-label">R-TB1</label>
               </div>
               <mat-form-field appearance="outline" class="select-container">
-                <input matInput value="{{quoteDetails.customerInformation.rtb1}}" />
+                <input matInput [(ngModel)]="quoteDetails.customerInformation.rtb1" />
               </mat-form-field>
             </div>
           </div>
@@ -149,7 +142,7 @@
                 <input
                   type="text"
                   matInput
-                  value="{{quoteDetails.customerInformation.contactInformation.name}}"
+                  [(ngModel)]="quoteDetails.customerInformation.contactInformation.name"
                 />
               </mat-form-field>
             </div>
@@ -163,7 +156,7 @@
                 <input
                   type="text"
                   matInput
-                  value="{{quoteDetails.customerInformation.contactInformation.phone}}"
+                  [(ngModel)]="quoteDetails.customerInformation.contactInformation.phone"
                 />
               </mat-form-field>
             </div>
@@ -176,7 +169,7 @@
                 <label class="input-label">Email *</label>
               </div>
               <mat-form-field appearance="outline">
-                <input matInput value="{{quoteDetails.customerInformation.contactInformation.email}}" />
+                <input matInput [(ngModel)]="quoteDetails.customerInformation.contactInformation.email" name="email" />
               </mat-form-field>
               <!-- <div *ngIf="emailError" class="error-message">{{ emailError }}</div> -->
             </div>
@@ -329,7 +322,7 @@
             </div>
           </div>
 
-          
+
 
           <div class="middle-box">
             <div class="input-container">
@@ -346,13 +339,13 @@
             </div>
           </div>
         </div>
-        
+
 
 
 
 
         <div class="button-container">
-          <button 
+          <button
             class="theme-button active-btn"
             mat-flat-button
             aria-label="Edit Template"
@@ -386,6 +379,9 @@
 
       <!--Main Container End-->
     </div>
+
+
+
     <div class="delete-container">
 
       <button
@@ -398,6 +394,7 @@
       <button
         class="theme-button orange-btn"
         mat-flat-button
+        (click)="saveQuoteDetails()"
       >
         <mat-icon svgIcon="save"></mat-icon>Save
       </button>

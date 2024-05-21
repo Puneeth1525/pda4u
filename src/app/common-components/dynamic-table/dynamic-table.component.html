@@ -43,7 +43,7 @@
           <span>{{ element[item] }}</span>
         </div>
         <div class="run-id-width" *ngIf="item === 'Name'">
-          <span>{{ element[item] }}</span>
+          <span (click)="saveName(element)">{{ element[item] }}</span>
         </div>
         <div class="run-id-width" *ngIf="item === 'Number'">
           <span>{{ element[item] }}</span>

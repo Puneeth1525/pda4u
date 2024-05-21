@@ -17,6 +17,9 @@ export class QuoteAccountLookupComponent {
   ];
   fetchingData: boolean;
   tableDataSource: any = [];
+  selectedTab: string = 'account';
+  accountName: string = '';
+  address: string = '';
   elementDetails: any = [
     {
       label: 'Name',
@@ -41,18 +44,29 @@ export class QuoteAccountLookupComponent {
   ];
 
   ngOnInit(): void {
-    this.fetchData();
+    this.fetchData('account');
   }
 
-  fetchData(): void {
+  onTabChange(event: any): void {
+    this.selectedTab = event.index === 0 ? 'account' : 'address';
+    this.fetchData(this.selectedTab);
+  }
+
+  fetchData(type: string, query: string = ''): void {
+    console.log("fetching data")
     this.fetchingData = true;
-    axios.get('http://localhost:8080/api/v1/modal/account')
+    let url = `http://localhost:8080/api/v1/modal/${type}`;
+    if (query) {
+      url += `/${query}`;
+    }
+
+    axios.get(url)
       .then(response => {
         this.tableDataSource = response.data.accountModalResponse.map(item => {
           return {
-            Name: item.companyName,
-            Number: item.account,
-            Address: item.addressLine1,
+            Name: type === 'account' ? item.companyName : item.addressLine1,
+            Number: item.account || item.zipCode,
+            Address: item.addressLine1 || item.city,
           };
         });
       })
@@ -63,5 +77,20 @@ export class QuoteAccountLookupComponent {
         this.fetchingData = false;
       });
   }
+
+  onAccountSubmit(): void {
+    console.log("reached")
+
+      this.fetchData('account', this.accountName);
+
+  }
+
+  onAddressSubmit(): void {
+    console.log("reached")
+
+      this.fetchData('address', this.address);
+
+  }
+
 
 }

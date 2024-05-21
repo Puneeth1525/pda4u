@@ -3,7 +3,6 @@ import { ICountryAndCode } from '../partner/create-partner/create-partner.compon
 import { FormControl, FormGroup } from '@angular/forms';
 import axios from 'axios';
 import { MatDialog } from '@angular/material/dialog';
-import { RunHistoryDialogComponent } from '../run-history/run-history-dialog/run-history-dialog.component';
 import { QuoteAccountLookupComponent } from '../quote-account-lookup/quote-account-lookup.component';
 
 
@@ -17,8 +16,8 @@ export class QuoteSummaryComponent {
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   emailError: string | null = null;
   quoteNumber: string = '';
-  fromDate: string = '';
-  toDate: string = '';
+  fromDate: Date = new Date();
+  toDate: Date = new Date();
   origin: string  = '';
   destination: string = '';
   companyName: string = '';
@@ -69,10 +68,79 @@ export class QuoteSummaryComponent {
       numericCode: "008",
     },
   ];
+  localStorageCheckInterval: any;
+  lookedupAccount: any;
+  storedAccount: any = {};
+  accountName: string;
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+  minDate = new Date(2024, 0, 1);
+  maxDate = new Date(2024, 11, 31);
+  selectedDestination: string = '';
+  zipCode: string;
+  selectedCity: string;
+  selectedState: string;
+  zipDetails: any[] = [];
+  showZipDropdown: boolean = false;
+  originZipCode: string = '';
+  originZipDetails: any[] = [];
+  selectedOriginCity: string = '';
+  selectedOriginState: string = '';
+
+
   constructor(private cdRef: ChangeDetectorRef, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.fetchData();
+    this.localStorageCheckInterval = setInterval(() => {
+      const storedAccountString = localStorage.getItem('lookedupAccount');
+      if (storedAccountString) {
+        this.storedAccount = JSON.parse(storedAccountString);
+        this.accountName = this.storedAccount.Name;
+        this.cdRef.detectChanges();
+      }
+    }, 1000);
+    window.addEventListener('beforeunload', this.clearLocalStorage);
+  }
+
+  async fetchZipDetails() {
+    console.log("fetching zips")
+    try {
+      const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.zipCode);
+      this.zipDetails = response.data.zipDetails;
+      console.log(this.zipDetails)
+      this.showZipDropdown = true;
+    } catch (error) {
+      console.error('Error fetching zip details:', error);
+    }
+  }
+
+  onZipInputChange() {
+    this.showZipDropdown = false;
+  }
+
+  onZipSelection(detail: any) {
+    this.selectedCity = detail.city;
+    this.selectedState = detail.stateProvince;
+    this.zipCode = detail.zipCode;
+    this.showZipDropdown = false;
+  }
+
+  async fetchOriginZipDetails() {
+    try {
+      const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.originZipCode);
+      this.originZipDetails = response.data.zipDetails;
+    } catch (error) {
+      console.error('Error fetching zip details:', error);
+    }
+  }
+
+  onOriginZipSelection(detail: any) {
+    this.selectedOriginCity = detail.city;
+    this.selectedOriginState = detail.stateProvince;
+    this.originZipCode = detail.zipCode;
   }
 
   async submit() {
@@ -187,6 +255,17 @@ export class QuoteSummaryComponent {
     this.dialog.open(QuoteAccountLookupComponent, {
       minWidth: '1000px',
     });
+  }
+
+  clearLocalStorage() {
+    localStorage.removeItem('lookedupAccount');
+  }
+
+  ngOnDestroy() {
+    if (this.localStorageCheckInterval) {
+      clearInterval(this.localStorageCheckInterval);
+    }
+    window.removeEventListener('beforeunload', this.clearLocalStorage);
   }
 
 }

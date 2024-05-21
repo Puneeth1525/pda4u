@@ -147,4 +147,14 @@ export class DynamicTableComponent implements AfterViewInit {
       data: element,
     });
   }
+
+  closeDialog() {
+    this.dialog.closeAll()
+  }
+
+  saveName(element: any) {
+    console.log("element captured to save", element)
+    localStorage.setItem('lookedupAccount', JSON.stringify(element));
+    this.closeDialog()
+  }
 }

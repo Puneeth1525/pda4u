@@ -289,3 +289,26 @@ input {
   --mdc-checkbox-unselected-hover-state-layer-color: transparent !important;
   --mdc-checkbox-unselected-hover-state-layer-color: transparent !important;
 }
+
+.mat-datepicker-content {
+  background-color: #fae2bab7; /* White background */
+}
+
+/* Selector and highlighter color */
+.mat-calendar-body-selected {
+  background-color: #8ea0f1; /* Blue */
+}
+
+/* Style for today's date */
+.mat-calendar-body-today {
+  background-color: #ccc; /* Light gray */
+}
+
+/* Text color in the time region */
+.mat-clock, .mat-clock-face {
+  color: #333333; /* Dark gray */
+}
+
+.cdk-overlay-container .cdk-overlay-pane {
+  background-color: rgba(255, 255, 255, 1); /* White background with full opacity */
+}

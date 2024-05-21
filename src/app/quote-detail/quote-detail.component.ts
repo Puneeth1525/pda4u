@@ -1,10 +1,13 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { switchMap } from 'rxjs/operators';
 import axios from 'axios'
 import { ComItem } from '../interface/quotedetailsresponse.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { QuoteAccountLookupComponent } from '../quote-account-lookup/quote-account-lookup.component';
+
 
 
 @Component({
@@ -31,8 +34,11 @@ export class QuoteDetailComponent implements OnInit {
   addComFirstTime: boolean = true;
   isInvalid: boolean[] = [];
   isButtonClicked: boolean = false;
+  accountName: string;
+  localStorageCheckInterval: any;
+  storedAccount: any;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
+  constructor(private cdRef: ChangeDetectorRef, private route: ActivatedRoute, private http: HttpClient, public dialog: MatDialog) {
 
   }
 
@@ -52,7 +58,46 @@ export class QuoteDetailComponent implements OnInit {
       this.quoteNumber = params.get('quoteNumber') || '22';
       this.fetchQuoteDetails();
     });
+
+    this.localStorageCheckInterval = setInterval(() => {
+      const storedAccountString = localStorage.getItem('lookedupAccount');
+      if (storedAccountString) {
+        this.storedAccount = JSON.parse(storedAccountString);
+        this.accountName = this.storedAccount.Name;
+        this.cdRef.detectChanges();
+      }
+    }, 1000);
+    window.addEventListener('beforeunload', this.clearLocalStorage);
   }
+
+  clearLocalStorage() {
+    localStorage.removeItem('lookedupAccount');
+  }
+
+  ngOnDestroy() {
+    if (this.localStorageCheckInterval) {
+      clearInterval(this.localStorageCheckInterval);
+    }
+    window.removeEventListener('beforeunload', this.clearLocalStorage);
+  }
+
+  openAccountLookup() {
+    console.log("looking up")
+    this.dialog.open(QuoteAccountLookupComponent, {
+      minWidth: '1000px',
+    });
+  }
+
+  async saveQuoteDetails(): Promise<void> {
+    try {
+      const response = await axios.post('http://localhost:8080/api/v1/details/save', this.quoteDetails);
+      console.log('Quote details saved successfully:', response.data);
+    } catch (error) {
+      this.errorMessage = 'Error saving quote details';
+      console.error(error);
+    }
+  }
+
 
   async fetchQuoteDetails(): Promise<void> {
     try {
@@ -77,7 +122,7 @@ export class QuoteDetailComponent implements OnInit {
 
 
   addInputField() {
-    
+
     if (this.addComFirstTime) {
       this.addComFirstTime = false;
       this.newComList.push({
@@ -111,6 +156,6 @@ export class QuoteDetailComponent implements OnInit {
       this.newComList[index].tb2 = newValue;
       this.isInvalid[index] = false;
     }
-    
+
   }
 }
