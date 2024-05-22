@@ -1,3 +1,5 @@
+
+
 .connection-create-template {
   .headerContainer {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
@@ -47,9 +49,14 @@
   }
 
   .childContainer {
+
     padding: 25px 25px 0px 25px;
     width: calc(100% - 50px);
     margin-bottom: 20px;
+    * {
+      transform: scale(0.99);
+      transform-origin: top left;
+    }
     .inner-headerContainer {
       border: 1px solid rgba(0, 0, 0, 0.12);
       border-bottom: none;
@@ -142,15 +149,26 @@
             width: 66.6%;
           }
           .left-box {
-            width: 33.3%;
+            width: 25%;
           }
           .middle-box {
-            width: 33.3%;
+            width: 25%;
+          }
+          .big-middle {
+            width: 90%
           }
           .right-box {
-            width: 33.3%;
+            width: 25%;
           }
         }
+
+        .type-ahead {
+          display: flex;
+          gap: 10px;
+          margin: 10% 0;
+        }
+
+
         .input-container {
           padding: 20px 20px 0px 20px;
           margin: 0px;
@@ -207,6 +225,14 @@
   }
 }
 
+.mat-form-field {
+  width: 100%; /* Make all input fields wider */
+}
+
+.mat-form-field.mat-form-field-appearance-outline .mat-form-field-flex {
+  width: auto; /* Adjust width for outline appearance */
+}
+
 /* Container for the billing style */
 .billing-container {
   font-family: Arial, sans-serif;
@@ -253,6 +279,39 @@
   margin-top: 40px;
 }
 
+.remove-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+.remove-button {
+  background-color: rgb(191, 3, 3);
+  color: white;
+  border: none;
+  border-radius: 4px; /* Rounded edges */
+  width: 30px; /* Square button */
+  height: 30px; /* Square button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  min-width: 30px;
+  min-height: 30px;
+}
+
+.remove-button mat-icon {
+  font-size: 22px; /* Increase icon size */
+  color: white; /* White icon color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
 
 .delete-container {
   padding: 18px 20px;
@@ -292,7 +351,8 @@
 
 .button-container {
   width: 100%;
-  margin-top: 10px;  /* Add space above the button, optional */
-  padding-bottom: 20px; /* Adjust the value as needed */
+  margin-top: 10px;
+  padding-bottom: 20px;
 }
+
 

@@ -94,7 +94,7 @@
           <div class="middle-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">dd1</label>
+                <label class="input-label">dd3</label>
               </div>
               <mat-form-field appearance="outline" class="select-container">
                 <mat-select placeholder="{{quoteDetails.customerInformation.dd1}}">
@@ -108,7 +108,7 @@
           <div class="right-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">dd2</label>
+                <label class="input-label">tb2</label>
               </div>
               <mat-form-field appearance="outline" class="select-container">
                 <mat-select placeholder="{{quoteDetails.customerInformation.dd2}}">
@@ -190,31 +190,36 @@
                 <label class="input-label">Origin</label>
               </div>
               <mat-form-field appearance="outline">
-                <mat-select placeholder="{{quoteDetails.shippingInformation.origin.country}}">
-                  <mat-option *ngFor="let option of options" [value]="option">
-                    {{ option }}
-                  </mat-option>
+                <mat-select [(ngModel)]="selectedOrigin" placeholder="Select Origin">
+                  <mat-option value="United States">United States</mat-option>
+                  <mat-option value="Mexico">Mexico</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
           </div>
-          <div class="middle-box">
-            <div class="input-container">
-              <div class="input-container" style="display: flex; gap: 10px;">
-                <mat-form-field appearance="outline">
-                  <input class="api" matInput value="{{quoteDetails.shippingInformation.origin.zipCode}}" />
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <input class="api" matInput value="{{quoteDetails.shippingInformation.origin.city}}" />
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <input class="api" matInput value="{{quoteDetails.shippingInformation.origin.stateProvince}}" />
-                </mat-form-field>
-              </div>
+          <div class="big-middle">
+            <div class="input-container type-ahead" style="margin-top: 2.5%;">
+              <mat-form-field appearance="outline">
+                <input class="api" matInput placeholder="Zip" [(ngModel)]="originZipCode" (input)="fetchOriginZipDetails()" [matAutocomplete]="autoOrigin">
+              </mat-form-field>
 
+              <mat-autocomplete #autoOrigin="matAutocomplete">
+                <mat-option *ngFor="let detail of originZipDetails" [value]="detail.zipCode" (onSelectionChange)="onOriginZipSelection(detail)">
+                  {{ detail.zipCode }}-{{ detail.city }}-{{ detail.stateProvince }}
+                </mat-option>
+              </mat-autocomplete>
+
+              <mat-form-field appearance="outline">
+                <input class="api" matInput placeholder="City" [(ngModel)]="selectedOriginCity" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <input class="api" matInput placeholder="State" [(ngModel)]="selectedOriginState" />
+              </mat-form-field>
             </div>
+
           </div>
-          <div class="right-box clear-btn">
+          <div class="right-box clear-btn" style="margin-top: 3%;">
             <button
         class="theme-button active-btn"
         mat-flat-button
@@ -233,40 +238,41 @@
                 <label class="input-label">Destination</label>
               </div>
               <mat-form-field appearance="outline">
-                <mat-select placeholder="{{quoteDetails.shippingInformation.destination.country}}">
-                  <mat-option *ngFor="let option of options" [value]="option">
-                    {{ option }}
-                  </mat-option>
+                <mat-select [(ngModel)]="selectedDestination" placeholder="Select Origin">
+                  <mat-option value="United States">United States</mat-option>
+                  <mat-option value="Mexico">Mexico</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
           </div>
-          <div class="middle-box">
-            <div class="input-container">
-              <div class="input-container" style="display: flex; gap: 10px;">
-                <mat-form-field appearance="outline">
-                  <input class="api" matInput value="{{quoteDetails.shippingInformation.destination.zipCode}}" />
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <input class="api" matInput value="{{quoteDetails.shippingInformation.destination.city}}" />
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                  <input class="api" matInput value="{{quoteDetails.shippingInformation.destination.stateProvince}}" />
-                </mat-form-field>
+          <div class="big-middle">
+            <div class="input-container type-ahead" style="margin-top: 2.4%;">
+              <mat-form-field appearance="outline">
+                <input class="api" matInput placeholder="Zip" [(ngModel)]="zipCode" (input)="fetchZipDetails()"
+                  [matAutocomplete]="auto">
+              </mat-form-field>
 
-              </div>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let detail of zipDetails" [value]="detail.zipCode"
+                  (onSelectionChange)="onZipSelection(detail)">
+                  {{ detail.zipCode }}-{{ detail.city }}-{{ detail.stateProvince }}
+                </mat-option>
+              </mat-autocomplete>
 
+              <mat-form-field appearance="outline">
+                <input class="api" matInput placeholder="City" [(ngModel)]="selectedCity" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <input class="api" matInput placeholder="State" [(ngModel)]="selectedState" />
+              </mat-form-field>
             </div>
+
           </div>
-          <div class="right-box clear-btn">
-            <button
-        class="theme-button active-btn"
-        mat-flat-button
-        aria-label="Edit Template"
-        (click)="clearDestination()"
-      >
-        <mat-icon svgIcon="edit-white"></mat-icon>Clear
-      </button>
+          <div class="right-box clear-btn" style="margin-top: 2.75%;">
+            <button class="theme-button active-btn" mat-flat-button aria-label="Edit Template" (click)="clearDestination()">
+              <mat-icon svgIcon="edit-white"></mat-icon>Clear
+            </button>
 
           </div>
         </div>
@@ -282,78 +288,48 @@
           <div class="left-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">dd{{ i + 2 }}</label>
+                <label class="input-label">dd3 ({{i+2}})</label>
               </div>
               <mat-form-field appearance="outline">
-                <mat-select placeholder="{{com.dd3}}">
-                  <mat-option *ngFor="let option of options" [value]="option">
+                <mat-select [(ngModel)]="com.dd3">
+                  <mat-option *ngFor="let option of dd3s" [value]="option">
                     {{ option }}
                   </mat-option>
                 </mat-select>
-                <!-- <input matInput value="{{com.dd3}}" /> -->
               </mat-form-field>
             </div>
           </div>
           <div class="middle-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">tb{{ i + 2 }}</label>
+                <label class="input-label">tb3 ({{i+2}})</label>
               </div>
               <mat-form-field appearance="outline">
-                <input matInput value="{{com.tb2}}" />
+                <input matInput [(ngModel)]="com.tb2" />
               </mat-form-field>
             </div>
+          </div>
+          <div class="remove-box">
+            <button class="remove-button" mat-button (click)="removeComField(i)">
+              <mat-icon>close</mat-icon>
+            </button>
           </div>
         </div>
-        <!-- new input fields added here -->
-        <div class="one-line"*ngFor="let newcom of newComList; let i = index; trackBy: trackByFn">
-
-          <div class="left-box">
-            <div class="input-container">
-              <div class="label-container">
-                <label class="input-label">dd{{ i + 2 }}</label>
-              </div>
-              <mat-form-field appearance="outline">
-                <mat-select name="dd3" [(ngModel)]="newComList[i].dd3">
-                  <mat-option [value]="newComList[i].dd3">{{ newComList[i].dd3 }}</mat-option>
-                </mat-select>
-                <!-- <input matInput value="{{com.dd3}}" /> -->
-              </mat-form-field>
-            </div>
-          </div>
-
-
-
-          <div class="middle-box">
-            <div class="input-container">
-              <div class="label-container">
-                <label class="input-label">tb{{ i + 2 }}</label>
-              </div>
-              <mat-form-field appearance="outline">
-                <input matInput type="text" [(ngModel)]="newComList[i].tb2" [name]="'tb2_' + i"
-              [ngClass]="{'is-invalid': isInvalid[i]}" (ngModelChange)="onInputChange(i, $event)">
-            <div *ngIf="isInvalid[i]" class="mat-error">
-              Please enter a valid value.
-            </div>
-              </mat-form-field>
-            </div>
-          </div>
-        </div>
-
-
-
-
 
         <div class="button-container">
           <button
             class="theme-button active-btn"
             mat-flat-button
-            aria-label="Edit Template"
+            aria-label="Add Com Details"
             (click)="addInputField()"
           >
             <mat-icon svgIcon="edit-white"></mat-icon>Add Com Details
           </button>
         </div>
+
+
+
+
 
         <div class="inner-headerContainer">
           <div class="left-elements">
@@ -387,8 +363,9 @@
       <button
         class="theme-button active-btn"
         mat-flat-button
+        (click)="openEmail()"
       >
-        <mat-icon svgIcon="test"></mat-icon>Test
+        <mat-icon svgIcon="edit-white"></mat-icon>Email
       </button>
 
       <button

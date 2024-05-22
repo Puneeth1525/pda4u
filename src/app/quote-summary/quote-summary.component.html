@@ -65,7 +65,7 @@
                   <input [(ngModel)]="fromDate" matInput [ngxMatDatetimePicker]="fromPicker" placeholder="Choose a date"
                     [min]="minDate" [max]="maxDate">
                   <ngx-mat-datepicker-toggle matSuffix [for]="fromPicker"></ngx-mat-datepicker-toggle>
-                  <ngx-mat-datetime-picker #fromPicker>
+                  <ngx-mat-datetime-picker (input)="validateDateTime()" [enableMeridian]="true" [stepMinute]="15" #fromPicker>
                     <ngx-mat-datepicker-actions>
                       <button mat-button ngxMatDatepickerCancel>Cancel</button>
                       <button mat-raised-button color="primary" ngxMatDatepickerApply>Apply</button>
@@ -80,14 +80,14 @@
                   <label class="input-label">Origin</label>
                 </div>
                 <mat-form-field appearance="outline">
-                  <mat-select [(ngModel)]="selectedDestination" placeholder="Select Origin">
+                  <mat-select [(ngModel)]="selectedOrigin" placeholder="Select Origin">
                     <mat-option value="United States">United States</mat-option>
                     <mat-option value="Mexico">Mexico</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
             </div>
-            <div class="right-box">
+            <div class="big-middle">
               <div class="input-container">
                 <div class="input-container" style="display: flex; gap: 10px;">
                   <mat-form-field appearance="outline">
@@ -96,7 +96,7 @@
 
                   <mat-autocomplete #autoOrigin="matAutocomplete">
                     <mat-option *ngFor="let detail of originZipDetails" [value]="detail.zipCode" (onSelectionChange)="onOriginZipSelection(detail)">
-                      {{ detail.zipCode }}
+                      {{ detail.zipCode }}-{{ detail.city }}-{{ detail.stateProvince }}
                     </mat-option>
                   </mat-autocomplete>
 
@@ -124,7 +124,7 @@
                 <mat-form-field appearance="outline">
                   <input [(ngModel)]="toDate" matInput [ngxMatDatetimePicker]="toPicker" placeholder="Choose a date" [min]="minDate" [max]="maxDate">
                   <ngx-mat-datepicker-toggle matSuffix [for]="toPicker"></ngx-mat-datepicker-toggle>
-                  <ngx-mat-datetime-picker #toPicker>
+                  <ngx-mat-datetime-picker (input)="validateDateTime()" [enableMeridian]="true" [stepMinute]="15" #toPicker>
                     <ngx-mat-datepicker-actions>
                       <button mat-button ngxMatDatepickerCancel>Cancel</button>
                       <button mat-raised-button color="primary" ngxMatDatepickerApply>Apply</button>
@@ -146,7 +146,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="right-box">
+            <div class="big-middle">
               <div class="input-container">
                 <div class="input-container" style="display: flex; gap: 10px;">
                   <mat-form-field appearance="outline">
@@ -155,7 +155,7 @@
 
                   <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let detail of zipDetails" [value]="detail.zipCode" (onSelectionChange)="onZipSelection(detail)">
-                      {{ detail.zipCode }}
+                      {{ detail.zipCode }}-{{ detail.city }}-{{ detail.stateProvince }}
                     </mat-option>
                   </mat-autocomplete>
 
@@ -171,6 +171,7 @@
               </div>
             </div>
           </div>
+          <div *ngIf="dateError" class="error-message">{{ dateError }}</div>
           <div class="one-line">
             <div class="left-box">
               <div class="input-container">

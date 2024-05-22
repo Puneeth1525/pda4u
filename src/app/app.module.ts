@@ -116,6 +116,7 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatTabsModule} from '@angular/material/tabs';
+import { QuoteEmailComponent } from './quote-email/quote-email.component';
 
 
 @NgModule({
@@ -191,6 +192,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     QuoteSummaryComponent,
     QuoteDetailComponent,
     QuoteAccountLookupComponent,
+    QuoteEmailComponent,
   ],
   imports: [
     BrowserModule,

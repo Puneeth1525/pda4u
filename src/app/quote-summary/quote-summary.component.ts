@@ -18,6 +18,8 @@ export class QuoteSummaryComponent {
   quoteNumber: string = '';
   fromDate: Date = new Date();
   toDate: Date = new Date();
+  currentDate: Date = new Date();
+  dateError: String | null = null;
   origin: string  = '';
   destination: string = '';
   companyName: string = '';
@@ -79,6 +81,7 @@ export class QuoteSummaryComponent {
   minDate = new Date(2024, 0, 1);
   maxDate = new Date(2024, 11, 31);
   selectedDestination: string = '';
+  selectedOrigin: string = '';
   zipCode: string;
   selectedCity: string;
   selectedState: string;
@@ -201,6 +204,15 @@ export class QuoteSummaryComponent {
       this.emailError = 'Invalid email format';
     } else {
       this.emailError = null;
+    }
+  }
+
+  validateDateTime() {
+    console.log("Erroor")
+    if (this.fromDate && this.toDate) {
+      if (this.fromDate >= this.toDate) {
+        this.dateError = 'Error in date time'
+      }
     }
   }
 

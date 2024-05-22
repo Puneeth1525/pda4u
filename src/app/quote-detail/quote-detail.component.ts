@@ -7,7 +7,7 @@ import axios from 'axios'
 import { ComItem } from '../interface/quotedetailsresponse.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { QuoteAccountLookupComponent } from '../quote-account-lookup/quote-account-lookup.component';
-
+import { QuoteEmailComponent } from '../quote-email/quote-email.component';
 
 
 @Component({
@@ -37,20 +37,34 @@ export class QuoteDetailComponent implements OnInit {
   accountName: string;
   localStorageCheckInterval: any;
   storedAccount: any;
+  selectedOrigin: string;
+  selectedDestination: string;
+  zipCode: string;
+  selectedCity: string;
+  selectedState: string;
+  zipDetails: any[] = [];
+  showZipDropdown: boolean = false;
+  originZipCode: string = '';
+  originZipDetails: any[] = [];
+  selectedOriginCity: string = '';
+  selectedOriginState: string = '';
+  dd3s: any;
+
+
 
   constructor(private cdRef: ChangeDetectorRef, private route: ActivatedRoute, private http: HttpClient, public dialog: MatDialog) {
 
   }
 
   clearDestination() {
-    this.quoteDetails.shippingInformation.destination.zipCode = '';
-    this.quoteDetails.shippingInformation.destination.city = '';
-    this.quoteDetails.shippingInformation.destination.stateProvince = '';
+    this.zipCode= '';
+    this.selectedCity = '';
+    this.selectedState = '';
   }
   clearOrigin() {
-    this.quoteDetails.shippingInformation.origin.zipCode = '';
-    this.quoteDetails.shippingInformation.origin.city = '';
-    this.quoteDetails.shippingInformation.origin.stateProvince = '';
+    this.originZipCode = '';
+    this.selectedOriginCity= '';
+    this.selectedOriginState = '';
   }
 
   ngOnInit(): void {
@@ -58,6 +72,7 @@ export class QuoteDetailComponent implements OnInit {
       this.quoteNumber = params.get('quoteNumber') || '22';
       this.fetchQuoteDetails();
     });
+    this.dd3s = this.quoteDetails.com.coms.map(com => com.dd3);
 
     this.localStorageCheckInterval = setInterval(() => {
       const storedAccountString = localStorage.getItem('lookedupAccount');
@@ -84,6 +99,13 @@ export class QuoteDetailComponent implements OnInit {
   openAccountLookup() {
     console.log("looking up")
     this.dialog.open(QuoteAccountLookupComponent, {
+      minWidth: '1000px',
+    });
+  }
+
+  openEmail() {
+    console.log("looking up")
+    this.dialog.open(QuoteEmailComponent, {
       minWidth: '1000px',
     });
   }
@@ -120,33 +142,55 @@ export class QuoteDetailComponent implements OnInit {
     this.selectionConnection = e;
   }
 
-
-  addInputField() {
-
-    if (this.addComFirstTime) {
-      this.addComFirstTime = false;
-      this.newComList.push({
-        count: 0,
-        dd3: "dd3_value1",
-        tb2: ""
-      });
-    }else if ( this.newComList[this.newComList.length-1].tb2==="" ) {
-      this.isInvalid[this.newComList.length - 1] = true;
-    }else if(this.isInvalid.some(value => value === true)){
-      //do nothing
-    }else {
-      this.isInvalid[this.newComList.length - 1] = false;
-      this.newComList.push({
-        count: 0,
-        dd3: "dd3_value1",
-        tb2: ""
-      });
+  async fetchZipDetails() {
+    console.log("fetching zips")
+    try {
+      const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.zipCode);
+      this.zipDetails = response.data.zipDetails;
+      console.log(this.zipDetails)
+      this.showZipDropdown = true;
+    } catch (error) {
+      console.error('Error fetching zip details:', error);
     }
-    console.log(this.newComList);
+  }
+
+  onZipInputChange() {
+    this.showZipDropdown = false;
+  }
+
+  onZipSelection(detail: any) {
+    this.selectedCity = detail.city;
+    this.selectedState = detail.stateProvince;
+    this.zipCode = detail.zipCode;
+    this.showZipDropdown = false;
+  }
+
+  async fetchOriginZipDetails() {
+    try {
+      const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.originZipCode);
+      this.originZipDetails = response.data.zipDetails;
+    } catch (error) {
+      console.error('Error fetching zip details:', error);
+    }
+  }
+
+  onOriginZipSelection(detail: any) {
+    this.selectedOriginCity = detail.city;
+    this.selectedOriginState = detail.stateProvince;
+    this.originZipCode = detail.zipCode;
+  }
+
+
+
+  addInputField(): void {
+    this.quoteDetails.com.coms.push({
+      dd3: '',
+      tb2: ''
+    });
   }
 
   trackByFn(index: number, item: ComItem): number {
-    return index; // Use index as the unique identifier
+    return index;
   }
 
   onInputChange(index: number, newValue: any) {
@@ -157,5 +201,9 @@ export class QuoteDetailComponent implements OnInit {
       this.isInvalid[index] = false;
     }
 
+  }
+
+  removeComField(index: number): void {
+    this.quoteDetails.com.coms.splice(index, 1);
   }
 }
