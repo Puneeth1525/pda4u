@@ -14,7 +14,7 @@
       align-items: center;
       .left-child {
         .back-circle {
-          margin-right: 16px;
+          // margin-right: 8px;
           cursor: pointer;
           .circle {
             width: 40px;
@@ -52,7 +52,7 @@
 
     padding: 25px 25px 0px 25px;
     width: calc(100% - 50px);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     * {
       transform: scale(0.99);
       transform-origin: top left;
@@ -106,7 +106,7 @@
               font-size: 16px;
               font-weight: 500;
               color: #1d2939;
-              margin-bottom: 2px;
+              margin-bottom: 1px;
             }
           }
           .rightBottomText {
@@ -132,7 +132,7 @@
       border-radius: 0 0 4px 4px;
       background: #ffffff;
       display: flex;
-      min-height: 600px;
+      // min-height: 600px;
       &.bottom-radius-none {
         border-radius: 0;
       }
@@ -165,7 +165,7 @@
         .type-ahead {
           display: flex;
           gap: 10px;
-          margin: 10% 0;
+          margin: 5% 0;
         }
 
 
@@ -174,14 +174,14 @@
           margin: 0px;
         }
         .label-container {
-          margin-bottom: 4px;
+          margin-bottom: 2px;
           font-style: normal;
           font-weight: 600;
           font-size: 14px;
           line-height: 20px;
 
           .input-label {
-            margin-bottom: 3px;
+            margin-bottom: 1.5px;
           }
         }
         .input-value {
@@ -209,17 +209,17 @@
       font-size: 16px;
       font-weight: 600;
       line-height: 24px;
-      margin-top: 22px;
+      margin-top: 11px;
       padding: 32px 0px 4px 20px;
       display: flex;
       align-items: center;
       .mat-icon {
         width: 24px;
         height: 24px;
-        margin-right: 4px;
+        margin-right: 2px;
       }
       .switch {
-        margin-left: 15px;
+        margin-left: 7.5px;
       }
     }
   }
@@ -241,7 +241,7 @@
   width: 300px;
   background-color: #f9f9f9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 /* Individual div styles */
@@ -276,15 +276,15 @@
 }
 
 .clear-btn {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .remove-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
-  margin-top: 25px;
+  margin-left: 5px;
+  margin-top: 12.5px;
 }
 
 .remove-button {
@@ -309,13 +309,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 8px;
+  margin-left: 4px;
 }
 
 
 .delete-container {
   padding: 18px 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-top: none;
   background: #ffffff;
@@ -326,7 +326,7 @@
   }
   .delete-button {
     border: 1px solid #B42318;
-    margin-left: 12%;
+    margin-left: 6%;
     color: #B42318;
     background: #FFFBFA;
     border-radius: 5px;
@@ -356,3 +356,88 @@
 }
 
 
+.connection-create-template {
+  .headerContainer {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    height: 52px;
+    padding: 15px 27px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5; /* Light gray background */
+
+    .left-elements {
+      /* ... */
+    }
+    .right-elements {
+      /* ... */
+    }
+  }
+
+  .childContainer {
+    padding: 25px 25px 0px 25px;
+    width: calc(100% - 50px);
+    margin-bottom: 10px;
+    background-color: #f5f5f5; /* Light gray background */
+
+    .inner-headerContainer {
+      border: 1px solid #e0f2ff; /* Light blue border */
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      height: 32px;
+      padding: 24px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #e0f2ff; /* Light blue background */
+
+      .left-elements {
+        /* ... */
+      }
+
+      .right-elements {
+        /* ... */
+      }
+    }
+
+    .main-container {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 0 0 4px 4px;
+      background-color: #ffffff;
+
+      /* ... */
+    }
+  }
+
+  .billing-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 300px;
+    background-color: #e0f2ff; /* Light blue background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  /* ... other styles */
+
+  .delete-container {
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: none;
+    background-color: #ffffff;
+    border-radius: 0px 0px 4px 4px;
+
+    .mat-flat-button { /* Use default button styles */
+      &:hover {
+        background-color: #f5f5f5; /* Light gray hover effect */
+      }
+    }
+  }
+}
+
+.label-container {
+  font-weight: 600; /* Slightly bolder font weight */
+}

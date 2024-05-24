@@ -1,7 +1,9 @@
 <div class="run-history">
   <mat-card class="header-title">
     <div class="row">
-      <div class="title">Quote Summary</div>
+      <div class="title">
+        Quote Summary
+      </div>
     </div>
   </mat-card>
 
@@ -91,7 +93,7 @@
               <div class="input-container">
                 <div class="input-container" style="display: flex; gap: 10px;">
                   <mat-form-field appearance="outline">
-                    <input class="api" matInput placeholder="Zip" [(ngModel)]="originZipCode" (input)="fetchOriginZipDetails()" [matAutocomplete]="autoOrigin">
+                    <input class="api" matInput placeholder="Zip" [(ngModel)]="originZipCode" (input)="fetchOriginZipDetails()" [matAutocomplete]="selectedOrigin === 'United States' ? autoOrigin : null">
                   </mat-form-field>
 
                   <mat-autocomplete #autoOrigin="matAutocomplete">
@@ -110,6 +112,7 @@
                 </div>
               </div>
             </div>
+
           </div>
 
           <div class="one-line">

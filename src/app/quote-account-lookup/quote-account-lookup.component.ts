@@ -64,9 +64,9 @@ export class QuoteAccountLookupComponent {
       .then(response => {
         this.tableDataSource = response.data.accountModalResponse.map(item => {
           return {
-            Name: type === 'account' ? item.companyName : item.addressLine1,
-            Number: item.account || item.zipCode,
-            Address: item.addressLine1 || item.city,
+            Name: type === 'account' ? item.companyName : item.companyName,
+            Number: type === 'account' ? item.account : item.addressLine1,
+            Address: type === 'account' ? item.addressLine1 : item.account,
           };
         });
       })

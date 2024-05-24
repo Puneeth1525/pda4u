@@ -68,21 +68,22 @@ export class QuoteDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.quoteNumber = params.get('quoteNumber') || '22';
-      this.fetchQuoteDetails();
-    });
-    this.dd3s = this.quoteDetails.com.coms.map(com => com.dd3);
-
     this.localStorageCheckInterval = setInterval(() => {
-      const storedAccountString = localStorage.getItem('lookedupAccount');
+      let storedAccountString = localStorage.getItem('lookedupAccount');
       if (storedAccountString) {
         this.storedAccount = JSON.parse(storedAccountString);
         this.accountName = this.storedAccount.Name;
         this.cdRef.detectChanges();
       }
+      console.log(this.accountName)
     }, 1000);
+
     window.addEventListener('beforeunload', this.clearLocalStorage);
+    this.route.paramMap.subscribe(params => {
+      this.quoteNumber = params.get('quoteNumber') || '22';
+      this.fetchQuoteDetails();
+    });
+    this.dd3s = this.quoteDetails.com.coms.map(com => com.dd3);
   }
 
   clearLocalStorage() {

@@ -49,11 +49,18 @@
         </div>
       </div>
     </div>
+
+
+
+
     <div class="main-container">
       <div class="full-width">
+
+
+
         <div class="one-line">
           <div class="left-box">
-            <div class="input-container">
+            <div class="input-container quote-number">
               <div class="label-container">
                 <label class="input-label">Quote:</label>
               </div>
@@ -69,6 +76,9 @@
             </div>
           </div>
         </div>
+        </div>
+        </div>
+
 
         <div class="inner-headerContainer">
           <div class="left-elements">
@@ -77,7 +87,8 @@
             </div>
           </div>
         </div>
-
+        <div class="main-container">
+          <div class="full-width">
         <div class="one-line">
           <div class="left-box">
 
@@ -175,6 +186,10 @@
             </div>
           </div>
         </div>
+</div>
+</div>
+
+
 
         <div class="inner-headerContainer">
           <div class="left-elements">
@@ -183,6 +198,8 @@
             </div>
           </div>
         </div>
+        <div class="main-container">
+          <div class="full-width">
         <div class="one-line">
           <div class="left-box">
             <div class="input-container">
@@ -276,6 +293,8 @@
 
           </div>
         </div>
+        </div>
+        </div>
         <div class="inner-headerContainer">
           <div class="left-elements">
             <div class="right-child">
@@ -283,6 +302,8 @@
             </div>
           </div>
         </div>
+        <div class="main-container">
+          <div class="full-width">
 
         <div class="one-line" *ngFor="let com of quoteDetails.com.coms.slice(0, quoteDetails.com.coms.length - 1); let i = index">
           <div class="left-box">
@@ -326,7 +347,7 @@
             <mat-icon svgIcon="edit-white"></mat-icon>Add Com Details
           </button>
         </div>
-
+</div></div>
 
 
 
@@ -338,11 +359,15 @@
             </div>
           </div>
         </div>
+        <div class="main-container">
+          <div class="full-width">
 
         <div class="billing-container">
           <div class="updated"><span>Base Rate</span>{{quoteDetails.totalCharges.baseRate}} </div>
           <div class="updated"><span>Acc</span> {{quoteDetails.totalCharges.acc}}</div>
           <div class="updated final-rate"><span>Final Rate </span> {{quoteDetails.totalCharges.finalRate}}</div>
+        </div>
+        </div>
         </div>
 
 
@@ -382,5 +407,4 @@
         <mat-icon svgIcon="share"></mat-icon>Publish
       </button>
     </div>
-  </div>
-</div>
+

@@ -6,6 +6,8 @@ import {
   ViewChild,
   AfterViewInit,
   Inject,
+  ViewEncapsulation,
+  HostBinding,
 } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -32,6 +34,14 @@ export class DynamicTableComponent implements AfterViewInit {
   constructor(private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
     // this.defaultActiveSort = this.displayedColumns[0];
+  }
+
+  isOddRow(index: number): boolean {
+    return index % 2 === 0;
+  }
+
+  isEvenRow(index: number): boolean {
+    return index % 2 !== 0;
   }
 
   ngAfterViewInit() {

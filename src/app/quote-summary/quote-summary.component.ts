@@ -109,14 +109,17 @@ export class QuoteSummaryComponent {
   }
 
   async fetchZipDetails() {
-    console.log("fetching zips")
-    try {
-      const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.zipCode);
-      this.zipDetails = response.data.zipDetails;
-      console.log(this.zipDetails)
-      this.showZipDropdown = true;
-    } catch (error) {
-      console.error('Error fetching zip details:', error);
+    if (this.selectedDestination === 'United States') {
+      try {
+        const response = await axios.get(
+          'http://localhost:8080/api/v1/modal/zip/' + this.zipCode
+        );
+        this.zipDetails = response.data.zipDetails;
+        console.log(this.zipDetails);
+        this.showZipDropdown = true;
+      } catch (error) {
+        console.error('Error fetching zip details:', error);
+      }
     }
   }
 
@@ -132,11 +135,13 @@ export class QuoteSummaryComponent {
   }
 
   async fetchOriginZipDetails() {
-    try {
-      const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.originZipCode);
-      this.originZipDetails = response.data.zipDetails;
-    } catch (error) {
-      console.error('Error fetching zip details:', error);
+    if (this.selectedOrigin === 'United States') {
+      try {
+        const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.originZipCode);
+        this.originZipDetails = response.data.zipDetails;
+      } catch (error) {
+        console.error('Error fetching zip details:', error);
+      }
     }
   }
 

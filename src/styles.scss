@@ -79,7 +79,7 @@ $bv-brandlight: (
 $bv-orange: (
   50: #ffffff,
   100: #fff7f4,
-  200: #fecdbd,
+  200: #d59c80,
   300: #fc9977,
   400: #fc8259,
   500: #e28a30,
@@ -291,7 +291,7 @@ $my-custom-level: mat.define-typography-level(
     }
   }
   &.active-btn {
-    background-color: #0b4a87 !important;
+    background-color: #104c64 !important;
     color: #ffffff !important;
   }
   &.orange-btn {
@@ -329,7 +329,8 @@ $my-custom-level: mat.define-typography-level(
       cursor: pointer;
     }
     .mat-mdc-row:hover .mat-mdc-cell {
-      background: #f6fbff;
+      background: #fff7f4;
+     // #fecdbd,
     }
     .mdc-data-table__header-cell {
       border-bottom-color: rgba(0, 0, 0, 0.12) !important;
@@ -356,6 +357,14 @@ $my-custom-level: mat.define-typography-level(
         height: auto !important;
         width: auto !important;
         top: 2px;
+      }
+
+      .mat-mdc-row:nth-child(odd) .mat-mdc-cell {
+        background-color: #82cbff; /* Light blue for odd rows */
+      }
+
+      .mat-mdc-row:nth-child(even) .mat-mdc-cell {
+        background-color: #ffffff; /* White for even rows */
       }
     }
     .status {
