@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { switchMap } from 'rxjs/operators';
 import axios from 'axios'
-import { ComItem } from '../interface/quotedetailsresponse.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { QuoteAccountLookupComponent } from '../quote-account-lookup/quote-account-lookup.component';
 import { QuoteEmailComponent } from '../quote-email/quote-email.component';
@@ -30,7 +29,6 @@ export class QuoteDetailComponent implements OnInit {
   exceptionsList: string = '';
 
   // adding new input field
-  newComList:ComItem[] = [];
   addComFirstTime: boolean = true;
   isInvalid: boolean[] = [];
   isButtonClicked: boolean = false;
@@ -190,19 +188,6 @@ export class QuoteDetailComponent implements OnInit {
     });
   }
 
-  trackByFn(index: number, item: ComItem): number {
-    return index;
-  }
-
-  onInputChange(index: number, newValue: any) {
-    if(newValue==="") {
-      this.isInvalid[index] = true;
-    }else{
-      this.newComList[index].tb2 = newValue;
-      this.isInvalid[index] = false;
-    }
-
-  }
 
   removeComField(index: number): void {
     this.quoteDetails.com.coms.splice(index, 1);

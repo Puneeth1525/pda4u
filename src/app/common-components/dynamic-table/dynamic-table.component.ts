@@ -14,7 +14,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ExecutionLogDialogComponent } from '../execution-log-dialog/execution-log-dialog.component';
 import { Dialog, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog';
-import { RunHistoryDialogComponent } from 'src/app/run-history/run-history-dialog/run-history-dialog.component';
 
 @Component({
   selector: 'app-dynamic-table',
@@ -149,13 +148,6 @@ export class DynamicTableComponent implements AfterViewInit {
     } else {
       return '';
     }
-  }
-
-  openRunHistoryDetails(element: any) {
-    this.dialog.open(RunHistoryDialogComponent, {
-      minWidth: '300px',
-      data: element,
-    });
   }
 
   closeDialog() {

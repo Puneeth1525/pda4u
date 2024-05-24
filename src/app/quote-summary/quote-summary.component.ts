@@ -1,5 +1,4 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { ICountryAndCode } from '../partner/create-partner/create-partner.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import axios from 'axios';
 import { MatDialog } from '@angular/material/dialog';
@@ -48,11 +47,7 @@ export class QuoteSummaryComponent {
   ];
   viewStyle?: string = 'table';
   options = ['Option 1', 'Option 2', 'Option 3'];
-  countries: ICountryAndCode[] = [
-    { code: "+91", name: "India" },
-    { code: "+61", name: "Australia" },
-    { code: "+1", name: "USA" }
-  ];
+
   selectableCountries: any = [
     {
       name: "+93",
