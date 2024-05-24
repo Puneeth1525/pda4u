@@ -138,6 +138,7 @@ import { QuoteEmailComponent } from './quote-email/quote-email.component';
     NgxMatNativeDateModule,
     MatAutocompleteModule,
     MatTabsModule,
+    MatExpansionModule,
   ],
   providers: [CdkColumnDef],
   bootstrap: [AppComponent],

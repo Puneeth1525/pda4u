@@ -42,7 +42,13 @@
     </div>
   </div>
   <div class="childContainer">
-    <div class="inner-headerContainer">
+    <div class="inner-headerContainer"
+    style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    ">
       <div class="left-elements">
         <div class="right-child">
           <div class="temp-properties-name">Quote Details</div>
@@ -58,7 +64,7 @@
 
 
 
-        <div class="one-line">
+        <div class="one-line" style="display: flex; justify-content: space-between;">
           <div class="left-box">
             <div class="input-container quote-number">
               <div class="label-container">
@@ -76,19 +82,24 @@
             </div>
           </div>
         </div>
+
         </div>
         </div>
+
 
 
         <div class="inner-headerContainer">
           <div class="left-elements">
             <div class="right-child">
               <div class="temp-properties-name">Contact Information</div>
+              <mat-icon (click)="isContactInfoCollapsed = !isContactInfoCollapsed"
+               class="icon"
+              svgIcon="{{ isContactInfoCollapsed ? 'down-arrow' : 'expand_less' }}"></mat-icon>
             </div>
           </div>
         </div>
         <div class="main-container">
-          <div class="full-width">
+          <div class="full-width" *ngIf="!isContactInfoCollapsed">
         <div class="one-line">
           <div class="left-box">
 
@@ -107,8 +118,8 @@
               <div class="label-container">
                 <label class="input-label">dd3</label>
               </div>
-              <mat-form-field appearance="outline" class="select-container">
-                <mat-select placeholder="{{quoteDetails.customerInformation.dd1}}">
+              <mat-form-field class="custom-form-field" appearance="outline" class="select-container">
+                <mat-select  class="custom-select" placeholder="{{quoteDetails.customerInformation.dd1}}">
                   <mat-option *ngFor="let option of options" [value]="option">
                     {{ option }}
                   </mat-option>
@@ -122,7 +133,7 @@
                 <label class="input-label">tb2</label>
               </div>
               <mat-form-field appearance="outline" class="select-container">
-                <mat-select placeholder="{{quoteDetails.customerInformation.dd2}}">
+                <mat-select class="custom-select" placeholder="{{quoteDetails.customerInformation.dd2}}">
                   <mat-option *ngFor="let option of options" [value]="option">
                     {{ option }}
                   </mat-option>
@@ -131,7 +142,7 @@
             </div>
           </div>
         </div>
-        <div class="one-line">
+        <div class="one-line-4">
           <div class="one-third-box">
             <div class="input-container">
               <div class="label-container">
@@ -195,19 +206,22 @@
           <div class="left-elements">
             <div class="right-child">
               <div class="temp-properties-name">Shipping Information</div>
+              <mat-icon (click)="isShippingInfoCollapsed = !isShippingInfoCollapsed"
+               class="icon"
+              svgIcon="{{ isShippingInfoCollapsed ? 'down-arrow' : 'expand_less' }}"></mat-icon>
             </div>
           </div>
         </div>
         <div class="main-container">
-          <div class="full-width">
-        <div class="one-line">
+          <div class="full-width" *ngIf="!isShippingInfoCollapsed">
+        <div class="one-line-2">
           <div class="left-box">
             <div class="input-container">
               <div class="label-container">
                 <label class="input-label">Origin</label>
               </div>
-              <mat-form-field appearance="outline">
-                <mat-select [(ngModel)]="selectedOrigin" placeholder="Select Origin">
+              <mat-form-field class="custom-form-field" appearance="outline">
+                <mat-select class="custom-select" [(ngModel)]="selectedOrigin" placeholder="Select Origin">
                   <mat-option value="United States">United States</mat-option>
                   <mat-option value="Mexico">Mexico</mat-option>
                 </mat-select>
@@ -216,7 +230,7 @@
           </div>
           <div class="big-middle">
             <div class="input-container type-ahead" style="margin-top: 2.5%;">
-              <mat-form-field appearance="outline">
+              <mat-form-field class="zip" appearance="outline">
                 <input class="api" matInput placeholder="Zip" [(ngModel)]="originZipCode" (input)="fetchOriginZipDetails()" [matAutocomplete]="autoOrigin">
               </mat-form-field>
 
@@ -226,11 +240,11 @@
                 </mat-option>
               </mat-autocomplete>
 
-              <mat-form-field appearance="outline">
+              <mat-form-field class="city" appearance="outline">
                 <input class="api" matInput placeholder="City" [(ngModel)]="selectedOriginCity" />
               </mat-form-field>
 
-              <mat-form-field appearance="outline">
+              <mat-form-field class="state" appearance="outline">
                 <input class="api" matInput placeholder="State" [(ngModel)]="selectedOriginState" />
               </mat-form-field>
             </div>
@@ -248,14 +262,14 @@
 
           </div>
         </div>
-        <div class="one-line">
+        <div class="one-line-2">
           <div class="left-box">
             <div class="input-container">
               <div class="label-container">
                 <label class="input-label">Destination</label>
               </div>
-              <mat-form-field appearance="outline">
-                <mat-select [(ngModel)]="selectedDestination" placeholder="Select Origin">
+              <mat-form-field class="custom-form-field" appearance="outline">
+                <mat-select class="custom-select" [(ngModel)]="selectedDestination" placeholder="Select Origin">
                   <mat-option value="United States">United States</mat-option>
                   <mat-option value="Mexico">Mexico</mat-option>
                 </mat-select>
@@ -264,7 +278,7 @@
           </div>
           <div class="big-middle">
             <div class="input-container type-ahead" style="margin-top: 2.4%;">
-              <mat-form-field appearance="outline">
+              <mat-form-field class="zip" appearance="outline">
                 <input class="api" matInput placeholder="Zip" [(ngModel)]="zipCode" (input)="fetchZipDetails()"
                   [matAutocomplete]="auto">
               </mat-form-field>
@@ -276,11 +290,11 @@
                 </mat-option>
               </mat-autocomplete>
 
-              <mat-form-field appearance="outline">
+              <mat-form-field class="city" appearance="outline">
                 <input class="api" matInput placeholder="City" [(ngModel)]="selectedCity" />
               </mat-form-field>
 
-              <mat-form-field appearance="outline">
+              <mat-form-field class="state" appearance="outline">
                 <input class="api" matInput placeholder="State" [(ngModel)]="selectedState" />
               </mat-form-field>
             </div>
@@ -299,20 +313,32 @@
           <div class="left-elements">
             <div class="right-child">
               <div class="temp-properties-name">Com</div>
+              <mat-icon (click)="isComInfoCollapsed = !isComInfoCollapsed"
+               class="icon"
+              svgIcon="{{ isComInfoCollapsed ? 'down-arrow' : 'expand_less' }}"></mat-icon>
             </div>
           </div>
         </div>
         <div class="main-container">
-          <div class="full-width">
+          <div class="full-width" *ngIf="!isComInfoCollapsed">
+            <div class="one-line">
+              <div style="margin-left: 2ch;" class="left-box">
+                <h1>dd3</h1>
+              </div>
+              <div style="margin-left: 1%;" class="middle-box">
+                <h1>tb3</h1>
+              </div>
+            </div>
 
         <div class="one-line" *ngFor="let com of quoteDetails.com.coms.slice(0, quoteDetails.com.coms.length - 1); let i = index">
+
           <div class="left-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">dd3 ({{i+2}})</label>
+                <label class="input-label">({{i+2}})</label>
               </div>
               <mat-form-field appearance="outline">
-                <mat-select [(ngModel)]="com.dd3">
+                <mat-select class="custom-select" [(ngModel)]="com.dd3">
                   <mat-option *ngFor="let option of dd3s" [value]="option">
                     {{ option }}
                   </mat-option>
@@ -323,15 +349,15 @@
           <div class="middle-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">tb3 ({{i+2}})</label>
+                <label class="input-label">({{i+2}})</label>
               </div>
               <mat-form-field appearance="outline">
                 <input matInput [(ngModel)]="com.tb2" />
               </mat-form-field>
             </div>
           </div>
-          <div class="remove-box">
-            <button class="remove-button" mat-button (click)="removeComField(i)">
+          <div class="remove-box" (mouseover)="showRemoveButton(i)" (mouseleave)="hideRemoveButton(i)">
+            <button class="remove-button" mat-button (click)="removeComField(i)" [style.visibility]="removeButtonVisibility[i]">
               <mat-icon>close</mat-icon>
             </button>
           </div>
@@ -356,11 +382,14 @@
           <div class="left-elements">
             <div class="right-child">
               <div class="temp-properties-name">Total Charges</div>
+              <mat-icon (click)="isTotalChargesCollapsed = !isTotalChargesCollapsed"
+               class="icon"
+              svgIcon="{{ isTotalChargesCollapsed ? 'down-arrow' : 'expand_less' }}"></mat-icon>
             </div>
           </div>
         </div>
         <div class="main-container">
-          <div class="full-width">
+          <div class="full-width" *ngIf="!isTotalChargesCollapsed">
 
         <div class="billing-container">
           <div class="updated"><span>Base Rate</span>{{quoteDetails.totalCharges.baseRate}} </div>

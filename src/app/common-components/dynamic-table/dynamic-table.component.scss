@@ -83,3 +83,137 @@
   width: auto !important;
   top: 2px;
 }
+
+
+mat-form-field {
+  &.search-form-field {
+    // margin-right: 16px;
+    width: 250px !important;
+    &.width-300px {
+      width: 300px !important;
+    }
+    &.width-350px {
+      width: 350px !important;
+    }
+    max-width: 400px;
+
+    .mat-mdc-form-field-icon-prefix {
+      padding: 0px;
+      .mat-icon {
+        padding: 9px 7px 9px 12px !important;
+        color: #98a2b3;
+      }
+    }
+  }
+}
+
+.tab-wrap {
+  .mat-button-toggle-label-content {
+    line-height: 38px !important;
+  }
+  .mat-button-toggle-group-appearance-standard {
+    border-radius: 5px;
+    border: none;
+  }
+  .toggles {
+    font-size: 14px;
+    font-weight: 500;
+    color: #475467;
+    line-height: 38px;
+    border: 1px solid #d0d5dd;
+    ::ng-deep {
+      .mat-button-toggle-label-content {
+        line-height: 38px !important;
+      }
+    }
+  }
+  .mat-button-toggle-checked {
+    background-color: #f6fbff !important;
+    border: 1px solid #99c8f7 !important;
+    color: #0f61b3;
+    &:first-child {
+      border-radius: 4px 0px 0px 4px;
+    }
+    &:last-child {
+      border-radius: 0px 4px 4px 0px;
+    }
+    .mat-button-toggle-label-content {
+      color: #0f61b3;
+    }
+  }
+  .mat-button-toggle {
+    &:first-child {
+      border-radius: 4px 0px 0px 4px;
+      border-right: none;
+    }
+    &:last-child {
+      border-radius: 0px 4px 4px 0px;
+      border-left: none;
+    }
+  }
+  .mat-button-toggle-focus-overlay {
+    opacity: 0;
+    background: transparent;
+  }
+
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__leading,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__notch,
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+    .mdc-notched-outline__trailing {
+    border-color: #d0d5dd;
+  }
+
+  .mat-button-toggle-label-content {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #475467;
+  }
+}
+
+.search-section {
+  display: flex;
+  align-items: center; /* Vertically center-align items */
+  justify-content: space-between; /* Add space between the left and right elements */
+  padding: 10px; /* Add some padding for better spacing */
+}
+
+.tab-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.left-elements {
+  display: flex;
+  align-items: center;
+}
+
+.button-size {
+  display: flex;
+}
+
+// .toggles {
+//   margin-right: 10px; /* Add space between toggle buttons */
+// }
+
+.right-elements {
+  display: flex;
+  align-items: center;
+}
+
+.search-form-field {
+  margin-top: 7px;
+  width: 300px; /* Adjust width as needed */
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  padding: 0;
+}
+
+.mat-icon {
+  margin-right: 8px;
+}
+
+
+

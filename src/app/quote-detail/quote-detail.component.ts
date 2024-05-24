@@ -27,6 +27,12 @@ export class QuoteDetailComponent implements OnInit {
   quoteDetails: any = {};
   errorMessage: string = '';
   exceptionsList: string = '';
+  isContactInfoCollapsed: boolean = true;
+  isShippingInfoCollapsed: boolean = true;
+  isComInfoCollapsed: boolean = true;
+  isTotalChargesCollapsed: boolean = true;
+  removeButtonVisibility: string[] = [];
+
 
   // adding new input field
   addComFirstTime: boolean = true;
@@ -47,6 +53,7 @@ export class QuoteDetailComponent implements OnInit {
   selectedOriginCity: string = '';
   selectedOriginState: string = '';
   dd3s: any;
+  panelOpenState = false;
 
 
 
@@ -63,6 +70,14 @@ export class QuoteDetailComponent implements OnInit {
     this.originZipCode = '';
     this.selectedOriginCity= '';
     this.selectedOriginState = '';
+  }
+
+  showRemoveButton(index: number) {
+    this.removeButtonVisibility[index] = 'visible';
+  }
+
+  hideRemoveButton(index: number) {
+    this.removeButtonVisibility[index] = 'hidden';
   }
 
   ngOnInit(): void {
@@ -126,6 +141,10 @@ export class QuoteDetailComponent implements OnInit {
       this.quoteDetails = response.data.details[0].quoteDetails;
       if (this.quoteDetails.exceptions) {
         this.exceptionsList = this.quoteDetails.exceptions.join(', ');
+      }
+      let numberOfButtons = this.quoteDetails.com.coms.length
+      for (let i = 0; i < numberOfButtons; i++) {
+        this.removeButtonVisibility.push('hidden');
       }
     } catch (error) {
       this.errorMessage = 'Error fetching quote details';

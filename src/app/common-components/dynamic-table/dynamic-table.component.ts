@@ -23,16 +23,25 @@ import { Dialog, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog';
 export class DynamicTableComponent implements AfterViewInit {
   @Input() displayedColumns: any = [];
   @Input() tableDataSource: any;
+  @Input() showFilters: boolean = false;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource: MatTableDataSource<any>;
   defaultActiveSort: any;
 
   secondHeader = ['Details Category 1', 'Details Category 2']
+  searchPlaceHolder: string = 'Search By Name';
+  widthClass: string = 'Search By Name';
+  statusFilter: string = 'all';
 
   constructor(private _liveAnnouncer: LiveAnnouncer, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
     // this.defaultActiveSort = this.displayedColumns[0];
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   isOddRow(index: number): boolean {

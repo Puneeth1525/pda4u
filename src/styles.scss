@@ -171,7 +171,7 @@ $my-custom-level: mat.define-typography-level(
   color: #1d2939;
   font-family: inherit;
   padding: 10px 14px;
-  border: 1px solid #d0d5dd !important;
+  border: 2px solid #d0d5dd !important;
   border-radius: 4px;
   background: #fcfcfd !important;
   &:focus-visible {
@@ -470,4 +470,8 @@ $my-custom-level: mat.define-typography-level(
     width: 370px;
     max-width: 370px;
   }
+}
+
+.custom-select {
+  font-size: small;
 }

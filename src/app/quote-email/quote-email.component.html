@@ -8,16 +8,16 @@
   <div mat-dialog-content class="modal-content">
 
     <form #emailForm="ngForm" (ngSubmit)="onSubmit(emailForm)">
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field style="width: 35%;" appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput type="email" (input)="validateEmail()" name="email" [(ngModel)]="emailData.email" required email>
         <mat-error *ngIf="emailError">
           {{ emailError }}
         </mat-error>
       </mat-form-field>
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field appearance="outline" class="full-width-2">
         <mat-label>Body</mat-label>
-        <textarea matInput name="body" [(ngModel)]="emailData.body" required></textarea>
+        <textarea matInput name="body" [(ngModel)]="emailData.body" required rows="10"></textarea>
         <!-- <mat-error *ngIf="emailForm.controls.body?.invalid && emailForm.controls.body?.touched">
           Please enter the email body.
         </mat-error> -->
@@ -28,7 +28,7 @@
   <div mat-dialog-actions class="modal-buttons">
     <div class="right-elements">
       <button class="btn" mat-dialog-close>Close</button>
-      <button (click)="onSubmit(emailForm)" class="btn primary-btn">Submit</button>
+      <button style="margin-left: 2%;" (click)="onSubmit(emailForm)" class="btn primary-btn">Submit</button>
 
     </div>
   </div>

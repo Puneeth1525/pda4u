@@ -14,6 +14,7 @@ export class QuoteSummaryComponent {
   email: string = '';
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   emailError: string | null = null;
+  showFilters: boolean = true
   quoteNumber: string = '';
   fromDate: Date = new Date();
   toDate: Date = new Date();
@@ -91,6 +92,7 @@ export class QuoteSummaryComponent {
   constructor(private cdRef: ChangeDetectorRef, public dialog: MatDialog) {}
 
   ngOnInit() {
+    this.setDefaultDateTime();
     this.fetchData();
     this.localStorageCheckInterval = setInterval(() => {
       const storedAccountString = localStorage.getItem('lookedupAccount');
@@ -101,6 +103,20 @@ export class QuoteSummaryComponent {
       }
     }, 1000);
     window.addEventListener('beforeunload', this.clearLocalStorage);
+  }
+
+  setDefaultDateTime() {
+    const now = new Date();
+    const minutes = now.getMinutes();
+    let roundedHour = now.getHours();
+
+    if (minutes >= 30) {
+      roundedHour += 1;
+    }
+
+    this.toDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), roundedHour, 0, 0);
+    this.fromDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), roundedHour, 0, 0);
+
   }
 
   async fetchZipDetails() {

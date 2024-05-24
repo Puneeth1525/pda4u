@@ -1,4 +1,100 @@
 <div class="responsive-table">
+  <div *ngIf="showFilters" class="table-filter-section">
+    <div class="row search-section">
+      <div class="tab-wrap">
+        <mat-button-toggle-group
+          class="left-elements button-size"
+          #group="matButtonToggleGroup"
+          [(ngModel)]="statusFilter"
+        >
+          <mat-button-toggle class="toggles" value="all" checked="true"
+            >Current Exception</mat-button-toggle
+          >
+          <mat-button-toggle class="toggles" value="failed">All Exceptions</mat-button-toggle>
+          <mat-button-toggle class="toggles" value="succeeded"
+            >All Quotes</mat-button-toggle
+          >
+        </mat-button-toggle-group>
+      </div>
+
+      <div class="right-elements">
+        <mat-form-field class="search-form-field" appearance="outline" class="{{widthClass}}">
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput type="search" [placeholder]="searchPlaceHolder"
+          (input)="applyFilter($event)"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- <div class="row filter-section">
+      <div class="filter-options">
+        <mat-form-field
+          appearance="outline"
+          floatLabel="always"
+          class="small-dropdown"
+        >
+          <mat-label>Company</mat-label>
+          <mat-select
+            placeholder="Select Company"
+            multiple
+            class="label-space"
+          >
+            <mat-option *ngFor="let option of options" value="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field
+          appearance="outline"
+          floatLabel="always"
+          class="small-dropdown"
+        >
+          <mat-label>Account </mat-label>
+          <mat-select placeholder="Select Account" multiple class="label-space">
+            <mat-option *ngFor="let option of options" value="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field
+          appearance="outline"
+          floatLabel="always"
+          class="date-range-picker"
+          color="primary"
+        >
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input
+              matStartDate
+              formControlName="start"
+              placeholder="Start date"
+              [disabled]="true"
+            />
+            <input
+              matEndDate
+              formControlName="end"
+              placeholder="End date"
+              [disabled]="true"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+          <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+            >Invalid start date</mat-error
+          >
+          <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+            >Invalid end date</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="filter-reset">
+        <button mat-stroked-button>Reset Filters</button>
+      </div>
+    </div> -->
+  </div>
   <table
   class="row custom-table"
   mat-table
@@ -41,10 +137,19 @@
       <div class="run-id-width" *ngIf="item === 'Name'">
         <span (click)="saveName(element)">{{ element[item] }}</span>
       </div>
-      <div class="run-id-width" *ngIf="item === 'Number'">
+      <div class="run-id-width" *ngIf="item === 'Company'">
         <span>{{ element[item] }}</span>
       </div>
       <div class="run-id-width" *ngIf="item === 'Address'">
+        <span>{{ element[item] }}</span>
+      </div>
+      <div class="run-id-width" *ngIf="item === 'City'">
+        <span>{{ element[item] }}</span>
+      </div>
+      <div class="run-id-width" *ngIf="item === 'State'">
+        <span>{{ element[item] }}</span>
+      </div>
+      <div class="run-id-width" *ngIf="item === 'Zipcode'">
         <span>{{ element[item] }}</span>
       </div>
       <div *ngIf="item === 'Company_Name'">

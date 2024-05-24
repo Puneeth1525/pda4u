@@ -19,6 +19,8 @@ export class TableFilterComponent {
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
+  searchPlaceHolder: string = 'Search By Name';
+  widthClass: string = 'Search By Name';
 
   showSlider() {
     this.showSliderBar = !this.showSliderBar;

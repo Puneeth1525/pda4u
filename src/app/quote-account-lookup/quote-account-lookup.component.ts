@@ -12,8 +12,11 @@ export class QuoteAccountLookupComponent {
 
   tableHeader: any = [
     'Name',
-    'Number',
+    'Company',
     'Address',
+    'City',
+    'State',
+    'Zipcode',
   ];
   fetchingData: boolean;
   tableDataSource: any = [];
@@ -65,8 +68,11 @@ export class QuoteAccountLookupComponent {
         this.tableDataSource = response.data.accountModalResponse.map(item => {
           return {
             Name: type === 'account' ? item.companyName : item.companyName,
-            Number: type === 'account' ? item.account : item.addressLine1,
+            Company: type === 'account' ? item.account : item.addressLine1,
             Address: type === 'account' ? item.addressLine1 : item.account,
+            City: type === 'account' ? item.city : item.city,
+            State: type === 'account' ? item.state : item.state,
+            Zipcode: type === 'account' ? item.zip : item.zip,
           };
         });
       })

@@ -36,6 +36,7 @@ confirmation-dialog {
     line-height: 24px;
     color: #1d2939;
     padding: 5px 0px 5px 0px;
+    margin-top: 2%;
   }
   .right-elements {
     display: flex;
@@ -121,4 +122,8 @@ confirmation-dialog {
       }
     }
   }
+}
+
+.full-width-2 {
+  width: 98%
 }
