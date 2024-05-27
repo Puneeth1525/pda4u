@@ -3,9 +3,9 @@
 
 <!-- Main content starts here -->
 <mat-toolbar class="toolbar">
-  <mat-icon (click)="toggleSidebar()" class="pointer">menu</mat-icon>
+  <!-- <mat-icon (click)="toggleSidebar()" class="pointer">menu</mat-icon> -->
   <img src="" class="logo" />
-  <h1>DEMO</h1>
+  <h1 style="color: white;">DEMO</h1>
   <span class="flexExpand"></span>
   <div>
     <mat-label mat-button [matMenuTriggerFor]="beforeMenu" class="profile-wrap">
@@ -42,7 +42,7 @@
     #drawer
     mode="side"
     disableClose="true"
-    opened="true"
+    opened="false"
     [ngClass]="{ menuhandle: isSidebarOpen }"
   >
     <mat-nav-list>

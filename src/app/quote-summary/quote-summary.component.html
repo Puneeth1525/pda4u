@@ -22,19 +22,19 @@
       <div class="main-container">
 
         <div class="full-width">
-          <div class="one-line-3">
-            <div class="left-box">
+          <div class="one-line-4">
+            <div class="left-box-2">
               <div class="input-container">
                 <div class="label-container">
                   <label class="input-label">Quote Number </label>
                 </div>
-                <mat-form-field class="smaller" appearance="outline">
+                <mat-form-field appearance="outline">
                   <input matInput placeholder="Enter Quote Number" [(ngModel)]="quoteNumber"/>
                 </mat-form-field>
               </div>
             </div>
-            <div class="middle-box">
-              <div class="input-container">
+            <div class="middle-box-3">
+              <div class="input-container smaller">
                 <div class="label-container">
                   <label class="input-label">Account </label>
                 </div>
@@ -44,7 +44,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="right-box show-border">
+            <div class="right-box-2 show-border">
               <div class="input-container">
                 <div class="label-container">
                   <label class="input-label">Input Must Exist *</label>
@@ -70,7 +70,7 @@
                   <ngx-mat-datetime-picker (input)="validateDateTime()" [enableMeridian]="true" [stepMinute]="15" #fromPicker>
                     <ngx-mat-datepicker-actions>
                       <button mat-button ngxMatDatepickerCancel>Cancel</button>
-                      <button mat-raised-button color="primary" ngxMatDatepickerApply>Apply</button>
+                      <button class="theme-button active-btn" mat-raised-button ngxMatDatepickerApply>Apply</button>
                     </ngx-mat-datepicker-actions>
                   </ngx-mat-datetime-picker>
                 </mat-form-field>
@@ -110,9 +110,18 @@
                   <mat-form-field class="state" appearance="outline">
                     <input class="api" matInput placeholder="State" [(ngModel)]="selectedOriginState" />
                   </mat-form-field>
+
+                  <div class="right-box-2 clear-btn">
+                    <button class="theme-button active-btn" mat-flat-button aria-label="Edit Template" (click)="clearOrigin()">
+                      <mat-icon svgIcon="edit-white"></mat-icon>Clear
+                    </button>
+
+                  </div>
                 </div>
               </div>
             </div>
+
+
 
           </div>
 
@@ -131,7 +140,7 @@
                   <ngx-mat-datetime-picker (input)="validateDateTime()" [enableMeridian]="true" [stepMinute]="15" #toPicker>
                     <ngx-mat-datepicker-actions>
                       <button mat-button ngxMatDatepickerCancel>Cancel</button>
-                      <button mat-raised-button color="primary" ngxMatDatepickerApply>Apply</button>
+                      <button class="theme-button active-btn" mat-raised-button ngxMatDatepickerApply>Apply</button>
                     </ngx-mat-datepicker-actions>
                   </ngx-mat-datetime-picker>
                 </mat-form-field>
@@ -170,14 +179,24 @@
                   <mat-form-field class="state" appearance="outline">
                     <input class="api" matInput placeholder="State" [(ngModel)]="selectedState" />
                   </mat-form-field>
+
+                  <div class="right-box-2 clear-btn">
+                    <button class="theme-button active-btn" mat-flat-button aria-label="Edit Template" (click)="clearDestination()">
+                      <mat-icon svgIcon="edit-white"></mat-icon>Clear
+                    </button>
+
+                  </div>
                 </div>
 
               </div>
+
             </div>
+
+
           </div>
           <div *ngIf="dateError" class="error-message">{{ dateError }}</div>
-          <div class="one-line-2">
-            <div class="left-box">
+          <div class="one-line-4">
+            <div class="left-box-2">
               <div class="input-container">
                 <div class="label-container">
                   <label class="input-label">Email *</label>

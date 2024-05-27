@@ -96,14 +96,27 @@ input {
 }
 
 /* for all textbox and dropdown border */
-.mdc-text-field--outlined:not(.mdc-text-field--disabled)
-  .mdc-notched-outline__leading,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled)
-  .mdc-notched-outline__notch,
-.mdc-text-field--outlined:not(.mdc-text-field--disabled)
-  .mdc-notched-outline__trailing {
-  border-color: #d0d5dd !important;
+/* Normal State */
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+  border-color: #d0d5dd;
 }
+
+/* Selected (Focused) State */
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: #3454D1;
+}
+
+/* Error State */
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--invalid .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--invalid .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--invalid .mdc-notched-outline__trailing {
+  border-color: darkred;
+}
+
 
 /* menu focus color */
 .mat-mdc-list-base {
@@ -291,7 +304,7 @@ input {
 }
 
 .mat-datepicker-content {
-  background-color: #fae2bab7; /* White background */
+  background-color: #ffffff; /* White background */
 }
 
 /* Selector and highlighter color */
@@ -302,6 +315,17 @@ input {
 /* Style for today's date */
 .mat-calendar-body-today {
   background-color: #ccc; /* Light gray */
+}
+
+.ngx-mat-datetime-picker-container {
+  background-color: #f0f0f0; /* Change background color */
+  color: #333; /* Change text color */
+}
+
+/* Customize the header */
+.ngx-mat-datetime-picker-header {
+  background-color: #3454D1; /* Change header background color */
+  color: white; /* Change header text color */
 }
 
 /* Text color in the time region */

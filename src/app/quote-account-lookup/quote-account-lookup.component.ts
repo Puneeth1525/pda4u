@@ -23,6 +23,9 @@ export class QuoteAccountLookupComponent {
   selectedTab: string = 'account';
   accountName: string = '';
   address: string = '';
+  city: string = '';
+  state: string = '';
+  zip: string = '';
   elementDetails: any = [
     {
       label: 'Name',

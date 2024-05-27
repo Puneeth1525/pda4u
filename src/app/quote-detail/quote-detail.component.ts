@@ -54,6 +54,7 @@ export class QuoteDetailComponent implements OnInit {
   selectedOriginState: string = '';
   dd3s: any;
   panelOpenState = false;
+  comError: string;
 
 
 
@@ -205,10 +206,15 @@ export class QuoteDetailComponent implements OnInit {
       dd3: '',
       tb2: ''
     });
+    this.comError = ''
   }
 
 
   removeComField(index: number): void {
-    this.quoteDetails.com.coms.splice(index, 1);
+    if (this.quoteDetails.com.coms.length > 1) {
+      this.quoteDetails.com.coms.splice(index, 1);
+    } else {
+      this.comError = 'Cannot delete the last remaining field.'
+    }
   }
 }

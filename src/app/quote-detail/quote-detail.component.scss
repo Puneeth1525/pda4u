@@ -31,7 +31,7 @@
       .right-child {
         .bread-crum {
           font-weight: 500;
-          font-size: 12px;
+          font-size: 20px;
           line-height: 18px;
           color: #1d2939;
           span {
@@ -275,9 +275,9 @@
   color: #333;
 }
 
-.clear-btn {
-  margin-top: 20px;
-}
+// .clear-btn {
+//   margin-top: 20px;
+// }
 
 .remove-box {
   display: flex;
@@ -381,7 +381,7 @@
     background-color: #f5f5f5; /* Light gray background */
 
     .inner-headerContainer {
-      border: 1px solid #e0f2ff; /* Light blue border */
+      border: 2px solid #3454D1; /* Light blue border */
       border-bottom: none;
       border-radius: 5px 5px 0 0;
       height: 32px;
@@ -389,7 +389,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #e0f2ff; /* Light blue background */
+      background-color: #E6E9F4; /* Light blue background */
 
       .left-elements {
         /* ... */
@@ -401,20 +401,20 @@
     }
 
     .main-container {
-      border: 1px solid rgba(0, 0, 0, 0.12);
+      border: 2px solid #3454D0;
       border-radius: 0 0 4px 4px;
       background-color: #ffffff;
-
-      /* ... */
+      margin-bottom: 2px;
     }
   }
 
   .billing-container {
     font-family: Arial, sans-serif;
+    font-size: medium;
     padding: 20px;
-    border: 1px solid #ddd;
-    width: 300px;
-    background-color: #e0f2ff; /* Light blue background */
+    border: 1px solid #3454D0;
+    width: 40%;
+    background-color: #E6E9F4; /* Light blue background */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-left: 10px;
     margin-top: 10px;

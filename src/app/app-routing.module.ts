@@ -5,6 +5,7 @@ import { QuoteSummaryComponent } from './quote-summary/quote-summary.component';
 import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/quote-summary', pathMatch: 'full' },
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'quote-summary', component: QuoteSummaryComponent },
   { path: 'quote-detail/:quote_no', component: QuoteDetailComponent },

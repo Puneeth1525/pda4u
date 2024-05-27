@@ -247,18 +247,18 @@
               <mat-form-field class="state" appearance="outline">
                 <input class="api" matInput placeholder="State" [(ngModel)]="selectedOriginState" />
               </mat-form-field>
-            </div>
+              <div class="right-box clear-btn">
+                <button
+            class="theme-button active-btn"
+            mat-flat-button
+            aria-label="Edit Template"
+            (click)="clearOrigin()"
+          >
+            <mat-icon svgIcon="edit-white"></mat-icon>Clear
+          </button>
 
-          </div>
-          <div class="right-box clear-btn" style="margin-top: 3%;">
-            <button
-        class="theme-button active-btn"
-        mat-flat-button
-        aria-label="Edit Template"
-        (click)="clearOrigin()"
-      >
-        <mat-icon svgIcon="edit-white"></mat-icon>Clear
-      </button>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -297,13 +297,13 @@
               <mat-form-field class="state" appearance="outline">
                 <input class="api" matInput placeholder="State" [(ngModel)]="selectedState" />
               </mat-form-field>
-            </div>
+              <div class="right-box clear-btn">
+                <button class="theme-button active-btn" mat-flat-button aria-label="Edit Template" (click)="clearDestination()">
+                  <mat-icon svgIcon="edit-white"></mat-icon>Clear
+                </button>
 
-          </div>
-          <div class="right-box clear-btn" style="margin-top: 2.75%;">
-            <button class="theme-button active-btn" mat-flat-button aria-label="Edit Template" (click)="clearDestination()">
-              <mat-icon svgIcon="edit-white"></mat-icon>Clear
-            </button>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -330,16 +330,16 @@
               </div>
             </div>
 
-        <div class="one-line" *ngFor="let com of quoteDetails.com.coms.slice(0, quoteDetails.com.coms.length - 1); let i = index">
+        <div class="one-line" *ngFor="let com of quoteDetails.com.coms.slice(0, quoteDetails.com.coms.length); let i = index">
 
           <div class="left-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">({{i+2}})</label>
+                <label class="input-label">({{i+1}})</label>
               </div>
               <mat-form-field appearance="outline">
                 <mat-select class="custom-select" [(ngModel)]="com.dd3">
-                  <mat-option *ngFor="let option of dd3s" [value]="option">
+                  <mat-option *ngFor="let option of com.dd3s" [value]="option">
                     {{ option }}
                   </mat-option>
                 </mat-select>
@@ -349,7 +349,7 @@
           <div class="middle-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">({{i+2}})</label>
+                <label class="input-label">({{i+1}})</label>
               </div>
               <mat-form-field appearance="outline">
                 <input matInput [(ngModel)]="com.tb2" />
@@ -361,7 +361,9 @@
               <mat-icon>close</mat-icon>
             </button>
           </div>
+
         </div>
+        <mat-error style="margin-left: 2%;" *ngIf="comError">{{comError}}</mat-error>
 
         <div class="button-container">
           <button

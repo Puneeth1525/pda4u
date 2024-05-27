@@ -32,7 +32,8 @@ margin-left: 45%;
 
 
   .show-border {
-    border: 2px solid #ccc;
+    border: 2px solid #3453D0;
+    background-color: #f5f5f7;
     border-radius: 15px;
     padding: 5px;
     margin: 2px;
@@ -362,7 +363,8 @@ margin-left: 45%;
 }
 
 .header-title {
-  background-color: #fef3e7;
+  background-color: #ffffff;
+  color: #283C50;
 }
 
 // .left-elements {
@@ -643,6 +645,8 @@ app-table-filter {
 //   width: 50%;
 // }
 
+
+
 .zip {
   width: 32%;
 }
@@ -669,7 +673,38 @@ app-table-filter {
   width: 95%;
 }
 
+.one-line-4 {
+  display: flex;
+  width: 68%;
+}
+
 .middle-box-2 {
   width: 100%;
+}
+
+.middle-box-3 {
+  width: 30%;
+}
+
+.left-box {
+  width: 55%;
+}
+
+// .right-box-2 {
+//   width: 100%;
+// }
+
+.left-box-2 {
+  width: 30%;
+}
+
+.smaller {
+  width: 74%;
+}
+
+.right-box-2 {
+margin-left: 0%;
+width: 20%;
+align-items: start;
 }
 

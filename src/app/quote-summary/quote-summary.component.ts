@@ -119,6 +119,17 @@ export class QuoteSummaryComponent {
 
   }
 
+  clearDestination() {
+    this.zipCode= '';
+    this.selectedCity = '';
+    this.selectedState = '';
+  }
+  clearOrigin() {
+    this.originZipCode = '';
+    this.selectedOriginCity= '';
+    this.selectedOriginState = '';
+  }
+
   async fetchZipDetails() {
     if (this.selectedDestination === 'United States') {
       try {
