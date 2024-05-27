@@ -26,7 +26,7 @@
             <div class="left-box-2">
               <div class="input-container">
                 <div class="label-container">
-                  <label class="input-label">Quote Number </label>
+                  <label class="input-label">Quote Number <span class="required-asterisk">*</span></label>
                 </div>
                 <mat-form-field appearance="outline">
                   <input matInput placeholder="Enter Quote Number" [(ngModel)]="quoteNumber"/>
@@ -47,7 +47,7 @@
             <div class="right-box-2 show-border">
               <div class="input-container">
                 <div class="label-container">
-                  <label class="input-label">Input Must Exist *</label>
+                  <label class="input-label">Input Must Exist <span class="required-asterisk">*</span></label>
                 </div>
                 <mat-radio-group [(ngModel)]="searchType" value="1" style="display: flex; flex-direction: column;" color="primary" aria-label="Select an option">
                   <mat-radio-button value="1">Current Exception</mat-radio-button>
@@ -61,7 +61,7 @@
             <div class="left-box">
               <div class="input-container">
                 <div class="label-container">
-                  <label class="input-label">From Date/Time *</label>
+                  <label class="input-label">From Date/Time <span class="required-asterisk">*</span></label>
                 </div>
                 <mat-form-field appearance="outline">
                   <input [(ngModel)]="fromDate" matInput [ngxMatDatetimePicker]="fromPicker" placeholder="Choose a date"
@@ -129,7 +129,7 @@
             <div class="left-box">
               <div class="input-container">
                 <div class="label-container">
-                  <label class="input-label">To Date/Time *</label>
+                  <label class="input-label">To Date/Time <span class="required-asterisk">*</span></label>
                 </div>
                 <!-- <mat-form-field appearance="outline">
                   <input matInput placeholder="Enter Effective Date/Time " />
@@ -199,7 +199,7 @@
             <div class="left-box-2">
               <div class="input-container">
                 <div class="label-container">
-                  <label class="input-label">Email *</label>
+                  <label class="input-label">Email <span class="required-asterisk">*</span></label>
                 </div>
                 <mat-form-field appearance="outline">
                   <input matInput placeholder="Enter Email" [(ngModel)]="email" (input)="validateEmail()" />
@@ -210,7 +210,7 @@
             <div class="right-box">
               <div class="input-container">
                 <div class="label-container">
-                  <label class="input-label">Exceptions *</label>
+                  <label class="input-label">Exceptions <span class="required-asterisk">*</span></label>
                 </div>
                 <mat-form-field appearance="outline">
                   <mat-select  class="custom-select" placeholder="Exceptions">

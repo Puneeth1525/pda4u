@@ -105,7 +105,7 @@
 
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">Account *</label>
+                <label class="input-label">Account <span class="required-asterisk">*</span></label>
               </div>
               <mat-form-field appearance="outline" class="select-container">
                 <input [(ngModel)]="accountName" matInput type="search" />
@@ -158,7 +158,7 @@
           <div class="left-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">Name *</label>
+                <label class="input-label">Name <span class="required-asterisk">*</span></label>
               </div>
               <mat-form-field appearance="outline">
                 <input
@@ -172,7 +172,7 @@
           <div class="middle-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">Phone *</label>
+                <label class="input-label">Phone <span class="required-asterisk">*</span></label>
               </div>
               <mat-form-field appearance="outline">
                 <input
@@ -188,7 +188,7 @@
           <div class="left-box">
             <div class="input-container">
               <div class="label-container">
-                <label class="input-label">Email *</label>
+                <label class="input-label">Email <span class="required-asterisk">*</span></label>
               </div>
               <mat-form-field appearance="outline">
                 <input matInput [(ngModel)]="quoteDetails.customerInformation.contactInformation.email" name="email" />
