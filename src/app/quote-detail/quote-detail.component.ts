@@ -7,6 +7,7 @@ import axios from 'axios'
 import { MatDialog } from '@angular/material/dialog';
 import { QuoteAccountLookupComponent } from '../quote-account-lookup/quote-account-lookup.component';
 import { QuoteEmailComponent } from '../quote-email/quote-email.component';
+import { env } from 'src/environments/environment';
 
 
 @Component({
@@ -52,7 +53,7 @@ export class QuoteDetailComponent implements OnInit {
   originZipDetails: any[] = [];
   selectedOriginCity: string = '';
   selectedOriginState: string = '';
-  dd3s: any;
+  dd3s: any[] = [];
   panelOpenState = false;
   comError: string;
 
@@ -97,7 +98,6 @@ export class QuoteDetailComponent implements OnInit {
       this.quoteNumber = params.get('quoteNumber') || '22';
       this.fetchQuoteDetails();
     });
-    this.dd3s = this.quoteDetails.com.coms.map(com => com.dd3);
   }
 
   clearLocalStorage() {
@@ -127,7 +127,7 @@ export class QuoteDetailComponent implements OnInit {
 
   async saveQuoteDetails(): Promise<void> {
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/details/save', this.quoteDetails);
+      const response = await axios.post(`${env.REST_URL}${env.VERSION}/details/save`, this.quoteDetails);
       console.log('Quote details saved successfully:', response.data);
     } catch (error) {
       this.errorMessage = 'Error saving quote details';
@@ -138,7 +138,7 @@ export class QuoteDetailComponent implements OnInit {
 
   async fetchQuoteDetails(): Promise<void> {
     try {
-      const response = await axios.get(`http://localhost:8080/api/v1/details/${this.quoteNumber}`);
+      const response = await axios.get(`${env.REST_URL}${env.VERSION}/details/${this.quoteNumber}`);
       this.quoteDetails = response.data.details[0].quoteDetails;
       if (this.quoteDetails.exceptions) {
         this.exceptionsList = this.quoteDetails.exceptions.join(', ');
@@ -153,6 +153,12 @@ export class QuoteDetailComponent implements OnInit {
     }
     console.log(this.quoteNumber)
     console.log(this.quoteDetails)
+
+    this.quoteDetails.com.coms.forEach(com => {
+      this.dd3s.push(com.dd3)
+      // console.log(com.dd3)
+    });
+    console.log("each", this.dd3s)
   }
 
   onFileSelected() {}
@@ -164,7 +170,7 @@ export class QuoteDetailComponent implements OnInit {
   async fetchZipDetails() {
     console.log("fetching zips")
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.zipCode);
+      const response = await axios.get(`${env.REST_URL}${env.VERSION}/modal/zip/` + this.zipCode);
       this.zipDetails = response.data.zipDetails;
       console.log(this.zipDetails)
       this.showZipDropdown = true;
@@ -186,7 +192,7 @@ export class QuoteDetailComponent implements OnInit {
 
   async fetchOriginZipDetails() {
     try {
-      const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.originZipCode);
+      const response = await axios.get(`${env.REST_URL}${env.VERSION}/modal/zip/` + this.originZipCode);
       this.originZipDetails = response.data.zipDetails;
     } catch (error) {
       console.error('Error fetching zip details:', error);
@@ -202,9 +208,10 @@ export class QuoteDetailComponent implements OnInit {
 
 
   addInputField(): void {
+
     this.quoteDetails.com.coms.push({
       dd3: '',
-      tb2: ''
+      tb2: `tb3-${this.quoteDetails.com.coms.length + 1}`
     });
     this.comError = ''
   }

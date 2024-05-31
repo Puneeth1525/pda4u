@@ -1,6 +1,8 @@
 import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import axios from 'axios';
+import { env } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-quote-account-lookup',
@@ -61,7 +63,7 @@ export class QuoteAccountLookupComponent {
   fetchData(type: string, query: string = ''): void {
     console.log("fetching data")
     this.fetchingData = true;
-    let url = `http://localhost:8080/api/v1/modal/${type}`;
+    let url = `${env.REST_URL}${env.VERSION}/modal/${type}`;
     if (query) {
       url += `/${query}`;
     }

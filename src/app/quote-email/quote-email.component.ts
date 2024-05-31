@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import axios from 'axios';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { env } from 'src/environments/environment';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class QuoteEmailComponent {
 
   onSubmit(form: any) {
     if (form.valid) {
-      axios.post('http://localhost:8080/api/v1/details/email', {
+      axios.post(`${env.REST_URL}${env.VERSION}/details/email`, {
         emailId: this.emailData.email,
         body: this.emailData.body
       })

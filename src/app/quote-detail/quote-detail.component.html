@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="right-child">
-        <div class="bread-crum">Quote Summary / <span>{{ quoteDetails.quoteNumber }}</span></div>
+        <div class="bread-crum">Quote Details / <span>{{ quoteDetails.quoteNumber }}</span></div>
         <!-- <div class="template-label"></div> -->
       </div>
     </div>
@@ -42,7 +42,7 @@
     </div>
   </div>
   <div class="childContainer">
-    <div class="inner-headerContainer"
+    <!-- <div class="inner-headerContainer"
     style="
     display: flex;
     justify-content: center;
@@ -54,7 +54,7 @@
           <div class="temp-properties-name">Quote Details</div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
 
@@ -334,12 +334,12 @@
 
           <div class="left-box">
             <div class="input-container">
-              <div class="label-container">
+              <!-- <div class="label-container">
                 <label class="input-label">({{i+1}})</label>
-              </div>
+              </div> -->
               <mat-form-field appearance="outline">
                 <mat-select class="custom-select" [(ngModel)]="com.dd3">
-                  <mat-option *ngFor="let option of com.dd3s" [value]="option">
+                  <mat-option *ngFor="let option of dd3s" [value]="com.dd3">
                     {{ option }}
                   </mat-option>
                 </mat-select>
@@ -348,9 +348,9 @@
           </div>
           <div class="middle-box">
             <div class="input-container">
-              <div class="label-container">
+              <!-- <div class="label-container">
                 <label class="input-label">({{i+1}})</label>
-              </div>
+              </div> -->
               <mat-form-field appearance="outline">
                 <input matInput [(ngModel)]="com.tb2" />
               </mat-form-field>

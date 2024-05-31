@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import axios from 'axios';
 import { MatDialog } from '@angular/material/dialog';
 import { QuoteAccountLookupComponent } from '../quote-account-lookup/quote-account-lookup.component';
-
+import { env } from 'src/environments/environment'
 
 @Component({
   selector: 'app-quote-summary',
@@ -134,7 +134,7 @@ export class QuoteSummaryComponent {
     if (this.selectedDestination === 'United States') {
       try {
         const response = await axios.get(
-          'http://localhost:8080/api/v1/modal/zip/' + this.zipCode
+          `${env.REST_URL}${env.VERSION}/modal/zip/` + this.zipCode
         );
         this.zipDetails = response.data.zipDetails;
         console.log(this.zipDetails);
@@ -159,7 +159,7 @@ export class QuoteSummaryComponent {
   async fetchOriginZipDetails() {
     if (this.selectedOrigin === 'United States') {
       try {
-        const response = await axios.get('http://localhost:8080/api/v1/modal/zip/' + this.originZipCode);
+        const response = await axios.get(`${env.REST_URL}${env.VERSION}/modal/zip/` + this.originZipCode);
         this.originZipDetails = response.data.zipDetails;
       } catch (error) {
         console.error('Error fetching zip details:', error);
@@ -203,7 +203,7 @@ export class QuoteSummaryComponent {
     }
     console.log(requestBody)
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/quote/search', requestBody);
+      const response = await axios.post(`${env.REST_URL}${env.VERSION}/quote/search`, requestBody);
 
       this.tableDataSource = response.data.searchExceptionResponse.map((item: any) => {
         return {
@@ -246,7 +246,7 @@ export class QuoteSummaryComponent {
   async fetchData() {
     this.fetchingData = true;
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/quote/search', {
+      const response = await axios.post(`${env.REST_URL}${env.VERSION}/quote/search`, {
         account: 'string',
         companyName: 'string',
         destination: {
